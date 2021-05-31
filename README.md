@@ -1,4 +1,4 @@
-![Header](./public/images/project.png)
+![Header](./public/images/project_banner.png)
 
 # Project-2
 
@@ -35,15 +35,17 @@
 
 ## About The Project
 
+Project WireFrame
+![WireFrame](./public/images/project_wireframe.png)
+
 ### Live URL
 
 ### Team
 
-- [Person A](https://github.com/)
-- [Person B](https://github.com/)
-- [Person C](https://github.com/)
+- [Joshua Mathew](https://github.com/Josco02)
 - [Korolyova Lara](https://github.com/KorolyovaLara)
-
+- [Sean McKay](https://github.com/seanmckay94)
+- [Tinku Rani](https://github.com/tinkubansal95)
 ## Description
 
 A web application where you can write, save and delete notes as much as you want.
