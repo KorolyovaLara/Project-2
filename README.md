@@ -4,6 +4,8 @@
 
     Coding Bootcamp - Project - 2
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://)
+
 [![Github license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/KorolyovaLara/TeamProject-2/blob/main/LICENSE)
 
 <details open="closed">
@@ -38,6 +40,14 @@
 Project WireFrame
 ![WireFrame](./public/images/project_wireframe.png)
 
+Project Webpage Ideas
+
+![HomePageIdea](./public/images/project_homepage_idea.png)
+
+![ProfileIdea](./public/images/project_profilepage_idea.png)
+
+![ForumIdea](./public/images/project_forum_idea.png)
+
 ### Live URL
 
 ### Team
@@ -46,6 +56,7 @@ Project WireFrame
 - [Korolyova Lara](https://github.com/KorolyovaLara)
 - [Sean McKay](https://github.com/seanmckay94)
 - [Tinku Rani](https://github.com/tinkubansal95)
+
 ## Description
 
 A web application where you can write, save and delete notes as much as you want.
