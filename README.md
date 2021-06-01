@@ -37,7 +37,8 @@
 
 ## About The Project
 
-Project WireFrame
+Project WireFrame - our starting point
+
 ![WireFrame](./public/images/project_wireframe.png)
 
 Project Webpage Ideas
@@ -47,6 +48,10 @@ Project Webpage Ideas
 ![ProfileIdea](./public/images/project_profilepage_idea.png)
 
 ![ForumIdea](./public/images/project_forum_idea.png)
+
+Database EER diagrams
+
+![ForumIdea](./public/images/eer_diagram.png)
 
 ### Live URL
 

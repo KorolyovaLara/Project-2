@@ -21,10 +21,12 @@ CREATE TABLE games (
   users_playing INTEGER
 );
     
-CREATE TABLE games_info (
+CREATE TABLE game_collection (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  game_id INTEGER NOT NULL REFERENCES games (game_id),
-  user_id INTEGER NOT NULL REFERENCES users (user_id)
+  games_id INTEGER NOT NULL,
+  users_id INTEGER NOT NULL,
+	CONSTRAINT fk_games FOREIGN KEY (games_id) REFERENCES games (game_id),
+	CONSTRAINT fk_users FOREIGN KEY (users_id) REFERENCES users (user_id)
 );
     
 CREATE TABLE post (
@@ -72,7 +74,7 @@ CREATE TABLE tag (
 CREATE TABLE post_tag (
   postId INTEGER NOT NULL,
   tagId INTEGER NOT NULL,
-  PRIMARY KEY (postId,tagId),
+  PRIMARY KEY (postId, tagId),
   KEY idx_pt_tag (tagId),
   KEY idx_pt_post (postId),
   CONSTRAINT fk_pt_post FOREIGN KEY (postId) REFERENCES post (id),
