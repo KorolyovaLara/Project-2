@@ -15,3 +15,9 @@ CREATE TABLE games (
     users_playing INTEGER
     );
     
+
+CREATE TABLE games_info (
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	game_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL
+    );
