@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class UserGames extends Model {}
+class PostTag extends Model {}
 
-UserGames.init(
+PostTag.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,18 +11,18 @@ UserGames.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    postId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
-        key: 'user_id',
+        model: 'post',
+        key: 'id',
       },
     },
-    game_id: {
+    tagId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'games',
-        key: 'game_id',
+        model: 'tag',
+        key: 'id',
       },
     },
   },
@@ -31,8 +31,8 @@ UserGames.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user_games',
+    modelName: 'post_tag',
   }
 );
 
-module.exports = UserGames;
+module.exports = PostTag;
