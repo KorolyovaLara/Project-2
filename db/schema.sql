@@ -12,6 +12,7 @@ CREATE TABLE users (
 	registeredAt DATETIME DEFAULT NULL ,
 	lastLogin DATETIME DEFAULT NULL ,
 	intro TINYTEXT
+
 );
 
 
@@ -46,6 +47,7 @@ CREATE TABLE post (
   CONSTRAINT fk_post_parent FOREIGN KEY (parentId) REFERENCES post (id),
   CONSTRAINT fk_post_user FOREIGN KEY (authorId) REFERENCES users (userId)
 );
+
 CREATE TABLE post_comment (
   id INTEGER NOT NULL AUTO_INCREMENT,
   postId INTEGER NOT NULL,
@@ -60,6 +62,7 @@ CREATE TABLE post_comment (
   CONSTRAINT fk_comment_parent FOREIGN KEY (parentId) REFERENCES post_comment (id),
   CONSTRAINT fk_comment_post FOREIGN KEY (postId) REFERENCES post (id)
 );
+
 CREATE TABLE tag (
   id INTEGER NOT NULL AUTO_INCREMENT,
   title VARCHAR(75) NOT NULL,
@@ -67,11 +70,13 @@ CREATE TABLE tag (
   content TEXT,
   PRIMARY KEY (id)
 );
+
 CREATE TABLE post_tag (
   id INTEGER NOT NULL AUTO_INCREMENT,
   postId INTEGER NOT NULL,
   tagId INTEGER NOT NULL,
   PRIMARY KEY (id),
+
   CONSTRAINT fk_pt_post FOREIGN KEY (postId) REFERENCES post (id),
   CONSTRAINT fk_pt_tag FOREIGN KEY (tagId) REFERENCES tag (id)
 );
