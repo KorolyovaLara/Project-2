@@ -1,3 +1,6 @@
+#dotenv
+.env
+
 # Apple file
 .DS_Store
 
