@@ -1,11 +1,11 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class Games extends Model {}
 
 Games.init(
   {
-    gameId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -16,9 +16,9 @@ Games.init(
       allowNull: false,
     },
     usersPlaying: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue : 0,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
     },
   },
   {
@@ -26,7 +26,7 @@ Games.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'games',
+    modelName: "games",
   }
 );
 

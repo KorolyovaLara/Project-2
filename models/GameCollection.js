@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class GameCollection extends Model {}
 
@@ -14,15 +14,15 @@ GameCollection.init(
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
-        key: 'userId',
+        model: "users",
+        key: "id",
       },
     },
     gameId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'games',
-        key: 'gameId',
+        model: "games",
+        key: "id",
       },
     },
   },
@@ -31,7 +31,7 @@ GameCollection.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'game_collection',
+    modelName: "game_collection",
   }
 );
 
