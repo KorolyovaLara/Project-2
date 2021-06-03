@@ -3,7 +3,7 @@ CREATE DATABASE gg_db;
 USE gg_db;
 
 CREATE TABLE users (
-	user_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	userId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   firstName VARCHAR(30) DEFAULT NULL,
 	lastName VARCHAR(30) DEFAULT NULL,
 	username VARCHAR(30) NOT NULL, 
@@ -16,15 +16,15 @@ CREATE TABLE users (
 );
 
 CREATE TABLE games (
-	game_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	gameId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   game_title VARCHAR(30) NOT NULL,
   users_playing INTEGER
 );
     
 CREATE TABLE game_collection (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  game_id INTEGER NOT NULL  REFERENCES games(game_id),
-  user_id INTEGER NOT NULL REFERENCES users(user_id),
+  gameId INTEGER NOT NULL  REFERENCES games(gameId),
+  userId INTEGER NOT NULL REFERENCES users(userId),
 );
     
 CREATE TABLE post (
@@ -43,7 +43,7 @@ CREATE TABLE post (
   KEY idx_post_user (authorId),
   KEY idx_post_parent (parentId),
   CONSTRAINT fk_post_parent FOREIGN KEY (parentId) REFERENCES post (id),
-  CONSTRAINT fk_post_user FOREIGN KEY (authorId) REFERENCES users (user_id)
+  CONSTRAINT fk_post_user FOREIGN KEY (authorId) REFERENCES users (userId)
 ); 
 
 CREATE TABLE post_comment (
