@@ -23,10 +23,8 @@ CREATE TABLE games (
     
 CREATE TABLE game_collection (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  games_id INTEGER NOT NULL,
-  users_id INTEGER NOT NULL,
-	CONSTRAINT fk_games FOREIGN KEY (games_id) REFERENCES games (game_id),
-	CONSTRAINT fk_users FOREIGN KEY (users_id) REFERENCES users (user_id)
+  game_id INTEGER NOT NULL  REFERENCES games(game_id),
+  user_id INTEGER NOT NULL REFERENCES users(user_id),
 );
     
 CREATE TABLE post (
