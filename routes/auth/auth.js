@@ -1,22 +1,37 @@
 const Users = require("../../models/Users");
+const { Op } = require("sequelize");
 
 const router = require("express").Router();
 
 router.post("/register", async (req, res) => {
   const { firstName, lastName, username, email, password, intro } = req.body;
 
-  // validate that its not empty
   if (
     ![firstName, lastName, username, email, password].every(
       (item) => item.trim() !== ""
     )
-  )
-    throw new Error("Invalid parameters");
+  ) {
+    res.status(404).send({ message: "Invalid parameters" });
+    return;
+  }
 
-  // check that the email isnt taken
-  const user = await Users.findOne({ where: { email } });
+  const emailUser = await Users.findOne({
+    where: { email },
+  });
 
-  if (user) throw new Error("Email is already taken");
+  if (emailUser) {
+    res.status(404).json({ message: "That email is already taken" });
+    return;
+  }
+
+  const usernameEmail = await Users.findOne({
+    where: { username },
+  });
+
+  if (usernameEmail) {
+    res.status(404).json({ message: "That username is taken" });
+    return;
+  }
 
   const newUser = await Users.create({
     firstName,
@@ -27,7 +42,32 @@ router.post("/register", async (req, res) => {
     intro,
   });
 
-  return { status: "success", user: newUser };
+  res.json({ status: "success", user: newUser });
+});
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (![email, password].every((item) => item.trim() !== "")) {
+    res.status(404).send({ message: "Invalid parameters" });
+    return;
+  }
+
+  const user = await Users.findOne({
+    where: { email },
+  });
+
+  if (!user) {
+    res.status(404).json({ message: "Invalid email or password" });
+    return;
+  }
+
+  if (!(await user.checkPassword(password))) {
+    res.status(404).json({ message: "Invalid email or password" });
+    return;
+  }
+
+  res.json({ status: "success", user });
 });
 
 module.exports = router;
