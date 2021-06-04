@@ -18,13 +18,6 @@ Comment.init(
           key: 'id',
         },
       },
-    parentId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'post_comment',
-          key: 'id',
-        },
-      },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
