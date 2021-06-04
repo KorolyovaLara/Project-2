@@ -18,13 +18,6 @@ Post.init(
         key: "id",
       },
     },
-    parentId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "post",
-        key: "id",
-      },
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,

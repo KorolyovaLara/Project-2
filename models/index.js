@@ -62,10 +62,4 @@ through: {
 as: 'tag_of_post'
 });
 
-
-Post.hasOne(Post, {as: 'ParentPost', foreignKey: 'parentId'})
-
-Post.belongsToMany(Post, { as: 'ChildPost', foreignKey: 'parentId' })
-
-
 module.exports = { User, Games , GameCollection , Post };
