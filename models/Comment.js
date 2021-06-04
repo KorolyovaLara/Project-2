@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class PostComment extends Model {}
 
-PostComment.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,13 +15,6 @@ PostComment.init(
         type: DataTypes.INTEGER,
         references: {
           model: 'post',
-          key: 'id',
-        },
-      },
-    parentId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'post_comment',
           key: 'id',
         },
       },
