@@ -1,73 +1,118 @@
 const Users = require("../../models/Users");
 const { Op } = require("sequelize");
+const { createToken } = require("../../utils/jwtToken");
 
 const router = require("express").Router();
 
 router.post("/register", async (req, res) => {
-  const { firstName, lastName, username, email, password, intro } = req.body;
+  try {
+    const { firstName, lastName, username, email, password, intro } = req.body;
 
-  if (
-    ![firstName, lastName, username, email, password].every(
-      (item) => item.trim() !== ""
-    )
-  ) {
-    res.status(404).send({ message: "Invalid parameters" });
-    return;
+    if (
+      ![firstName, lastName, username, email, password].every(
+        (item) => item.trim() !== ""
+      )
+    ) {
+      res.status(404).send({ message: "Invalid parameters" });
+      return;
+    }
+
+    const emailUser = await Users.findOne({
+      where: { email },
+    });
+
+    if (emailUser) {
+      res.status(404).json({ message: "That email is already taken" });
+      return;
+    }
+
+    const usernameEmail = await Users.findOne({
+      where: { username },
+    });
+
+    if (usernameEmail) {
+      res.status(404).json({ message: "That username is taken" });
+      return;
+    }
+
+    const user = await Users.create({
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      intro,
+    });
+
+    const { id } = user.get({ plain: true });
+
+    const token = createToken(id);
+
+    res.cookie("auth_token_gg", token, {
+      httpOnly: true,
+    });
+
+    res.status(200).json({
+      status: "success",
+      user: {
+        firstName,
+        lastName,
+        username,
+        email,
+        intro,
+      },
+    });
+  } catch (e) {
+    res.status(500).json({ message: "Something went wrong" });
   }
-
-  const emailUser = await Users.findOne({
-    where: { email },
-  });
-
-  if (emailUser) {
-    res.status(404).json({ message: "That email is already taken" });
-    return;
-  }
-
-  const usernameEmail = await Users.findOne({
-    where: { username },
-  });
-
-  if (usernameEmail) {
-    res.status(404).json({ message: "That username is taken" });
-    return;
-  }
-
-  const newUser = await Users.create({
-    firstName,
-    lastName,
-    username,
-    email,
-    password,
-    intro,
-  });
-
-  res.json({ status: "success", user: newUser });
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  if (![email, password].every((item) => item.trim() !== "")) {
-    res.status(404).send({ message: "Invalid parameters" });
-    return;
+    if (![email, password].every((item) => item.trim() !== "")) {
+      res.status(404).send({ message: "Invalid parameters" });
+      return;
+    }
+
+    const user = await Users.findOne({
+      where: { email },
+    });
+
+    if (!user) {
+      res.status(404).json({ message: "Invalid email or password" });
+      return;
+    }
+
+    if (!(await user.checkPassword(password))) {
+      res.status(404).json({ message: "Invalid email or password" });
+      return;
+    }
+
+    const {
+      firstName,
+      lastName,
+      username,
+      email: userEmail,
+      intro,
+      id,
+    } = user.get({
+      plain: true,
+    });
+
+    const token = createToken(id);
+    res.cookie("auth_token_gg", token, {
+      httpOnly: true,
+    });
+
+    res.status(200).json({
+      status: "success",
+      user: { firstName, lastName, username, email: userEmail, intro },
+    });
+  } catch (e) {
+    res.status(500).json({ message: "Something went wrong" });
   }
-
-  const user = await Users.findOne({
-    where: { email },
-  });
-
-  if (!user) {
-    res.status(404).json({ message: "Invalid email or password" });
-    return;
-  }
-
-  if (!(await user.checkPassword(password))) {
-    res.status(404).json({ message: "Invalid email or password" });
-    return;
-  }
-
-  res.json({ status: "success", user });
 });
 
 module.exports = router;
