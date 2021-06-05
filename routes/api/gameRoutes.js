@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   });
 
   if (gameTitleValidate) {
-    res.status(404).json({ message: "A game with this title already exists!" });
+    res.status(404).json({ message: `A game with ${gameTitle} title already exists!`});
     return;
   }
 
