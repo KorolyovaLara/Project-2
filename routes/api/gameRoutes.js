@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
   const { gameTitle } = req.body;
 
   if (
-    ![gameTitle].every(
+    if(!gameTitle.trim()) {}
       (item) => item.trim() !== ""
     )
   ) {
