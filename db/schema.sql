@@ -8,31 +8,27 @@ CREATE TABLE users (
 	lastName VARCHAR(30) DEFAULT NULL,
 	username VARCHAR(30) NOT NULL UNIQUE,
 	email VARCHAR(50) NOT NULL UNIQUE,
-	passwordHash VARCHAR(32) NOT NULL,
+	password VARCHAR(32) NOT NULL,
 	registeredAt DATETIME DEFAULT NULL ,
 	lastLogin DATETIME DEFAULT NULL ,
 	intro TINYTEXT
 
 );
 
-
 CREATE TABLE games (
 	gameId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	game_title VARCHAR(30) NOT NULL,
-	users_playing INTEGER
+	gameTitle VARCHAR(50) NOT NULL
 );
     
-
-CREATE TABLE game_collection (
-	id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE game_collections (
+	collectionId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	gameId INTEGER NOT NULL  REFERENCES games(gameId),
 	userId INTEGER NOT NULL REFERENCES users(userId)
 );
     
-CREATE TABLE post (
+CREATE TABLE posts (
 	id INTEGER NOT NULL AUTO_INCREMENT,
-	authorId INTEGER NOT NULL,
-	parentId INTEGER DEFAULT NULL,
+	authorId INTEGER NOT NULL REFERENCES users(userId),
 	title VARCHAR(75) NOT NULL,
 	slug VARCHAR(100) NOT NULL,
 	summary TINYTEXT,
@@ -41,26 +37,17 @@ CREATE TABLE post (
 	publishedAt DATETIME DEFAULT NULL,
 	content TEXT  ,
 	PRIMARY KEY (id),
-	UNIQUE KEY uq_slug (slug),
-	KEY idx_post_user (authorId),
-	KEY idx_post_parent (parentId),
-	CONSTRAINT fk_post_parent FOREIGN KEY (parentId) REFERENCES post (id),
-	CONSTRAINT fk_post_user FOREIGN KEY (authorId) REFERENCES users (userId)
+	UNIQUE KEY uq_slug (slug)
 ); 
 
-CREATE TABLE post_comment (
+CREATE TABLE comments (
 	id INTEGER NOT NULL AUTO_INCREMENT,
-	postId INTEGER NOT NULL,
-	parentId INTEGER DEFAULT NULL,
+	postId INTEGER NOT NULL REFERENCES post (id),
 	title VARCHAR(100) NOT NULL,
 	createdAt DATETIME NOT NULL,
 	publishedAt DATETIME DEFAULT NULL,
 	content TEXT,
-	PRIMARY KEY (id),
-	KEY idx_comment_post (postId),
-	KEY idx_comment_parent (parentId),
-	CONSTRAINT fk_comment_parent FOREIGN KEY (parentId) REFERENCES post_comment (id),
-	CONSTRAINT fk_comment_post FOREIGN KEY (postId) REFERENCES post (id)
+	PRIMARY KEY (id)
 ); 
 
 CREATE TABLE tag (

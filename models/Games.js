@@ -16,11 +16,6 @@ Games.init(
       allowNull: false,
       unique: true,
     },
-    usersPlaying: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-    },
   },
   {
     sequelize,
