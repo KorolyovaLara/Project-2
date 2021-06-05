@@ -7,7 +7,7 @@ const router = require("express").Router();
 router.post("/", async (req, res) => {
   const { gameTitle } = req.body;
 
-  if ( ! (gameTitle.trim() !== "" )) {
+  if ( gameTitle.trim() === "" ) {
     res.status(404).send({ message: "Invalid parameters" });
     return;
   }
