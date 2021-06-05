@@ -1,17 +1,13 @@
-const Tag = require("../../models/Tag");
+const Tag = require("../../models/Tags");
 const { Op } = require("sequelize");
 
 const router = require("express").Router();
 
 // create new tag
 router.post("/", async (req, res) => {
-  const { title,slug,content} = req.body;
+  const { title, slug, content } = req.body;
 
-  if (
-    ![title,slug,content].every(
-      (item) => item.trim() !== ""
-    )
-  ) {
+  if (![title, slug, content].every((item) => item.trim() !== "")) {
     res.status(404).send({ message: "Invalid parameters" });
     return;
   }
@@ -26,7 +22,9 @@ router.post("/", async (req, res) => {
   }
 
   const newTag = await Tag.create({
-    title,slug,content
+    title,
+    slug,
+    content,
   });
 
   res.json({ status: "success", tag: newTag });

@@ -1,17 +1,13 @@
 const router = require("express").Router();
 
-// added by Tinku
-const gameRoutes = require("./gameRoutes");
-const tagRoutes = require("./tagRoutes");
-router.use("/games", gameRoutes);
-router.use("/tags", tagRoutes);
-//
-
 const gameApi = require("./games");
 const collectionApi = require("./collections");
+const tagRoutes = require("./tagRoutes");
+const postsApi = require("./postsApi");
 
-router.use("/api", gameApi);
-router.use("/api", collectionApi);
-
+router.use("/games", gameApi);
+router.use("/collecions", collectionApi);
+router.use("/tags", tagRoutes);
+router.use("/posts", postsApi);
 
 module.exports = router;
