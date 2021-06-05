@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Games = require("../../../models/Games");
 const withAuth = require("../../auth/withAuth");
 
-// find all games for theuser
+// find all games for the user
 router.get("/", withAuth, async (req, res) => {
   const { id } = req.params.id;
   if (!id) {
@@ -12,6 +12,26 @@ router.get("/", withAuth, async (req, res) => {
   }
   const user = req.user;
   const games = await Games.findAll({ include });
+});
+
+router.post("/", withAuth, async (req, res) => {
+  const user = req.user;
+
+  const { gameTitle } = req.body;
+
+  try {
+    const game = await Games.create({
+      usersPlay: user.id,
+      gameTitle: gameTitle,
+    });
+
+    res.json(game);
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(409)
+      .json({ message: `The title "${gameTitle}" already exists.` });
+  }
 });
 
 module.exports = router;

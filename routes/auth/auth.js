@@ -33,7 +33,7 @@ router.post("/register", async (req, res) => {
     return;
   }
 
-  const newUser = await Users.create({
+  await Users.create({
     firstName,
     lastName,
     username,
@@ -42,7 +42,16 @@ router.post("/register", async (req, res) => {
     intro,
   });
 
-  res.json({ status: "success", user: newUser });
+  res.status(200).json({
+    status: "success",
+    user: {
+      firstName,
+      lastName,
+      username,
+      email,
+      intro,
+    },
+  });
 });
 
 router.post("/login", async (req, res) => {
@@ -67,7 +76,16 @@ router.post("/login", async (req, res) => {
     return;
   }
 
-  res.json({ status: "success", user });
+  const { firstName, lastName, username, email, intro } = user.get({
+    plain: true,
+  });
+
+  res
+    .status(200)
+    .json({
+      status: "success",
+      user: { firstName, lastName, username, email, intro },
+    });
 });
 
 module.exports = router;
