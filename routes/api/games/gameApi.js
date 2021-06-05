@@ -1,10 +1,18 @@
 const router = require("express").Router();
 
 const Games = require("../../../models/Games");
+const GameCollections = require("../../../models/GameCollections");
 const withAuth = require("../../../utils/auth");
 
 // find all games for the user
-router.get("/", withAuth, async (req, res) => {});
+//router.get("/", withAuth, async (req, res) => {
+//  try {
+//    const user = req.user;
+//    const userCollection = await GameCollections.findAll({
+//      where: {}
+//    })
+//  }
+//});
 
 router.post("/", withAuth, async (req, res) => {
   try {
