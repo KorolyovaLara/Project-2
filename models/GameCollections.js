@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class GameCollection extends Model {}
+class GameCollections extends Model {}
 
-GameCollection.init(
+GameCollections.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -31,8 +31,8 @@ GameCollection.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "game_collection",
+    modelName: "game_collections",
   }
 );
 
-module.exports = GameCollection;
+module.exports = GameCollections;
