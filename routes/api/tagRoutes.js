@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     title,slug,content
   });
 
-  res.json({ status: "success", user: newTag });
+  res.json({ status: "success", tag: newTag });
 });
 
 module.exports = router;
