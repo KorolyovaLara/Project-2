@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     gameTitle
   });
 
-  res.json({ status: "success", user: newGame });
+  res.json({ status: "success", game: newGame });
 });
 
 module.exports = router;
