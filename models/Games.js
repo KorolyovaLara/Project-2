@@ -14,6 +14,7 @@ Games.init(
     gameTitle: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     usersPlaying: {
       type: DataTypes.INTEGER,
