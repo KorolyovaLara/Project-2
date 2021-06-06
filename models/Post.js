@@ -13,10 +13,6 @@ Post.init(
     },
     authorId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "users",
-        key: "id",
-      },
     },
     title: {
       type: DataTypes.STRING,
