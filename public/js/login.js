@@ -5,13 +5,13 @@ const form = $("form");
 const closeNotification = $("#close_error_banner");
 const banner = $("#error_banner");
 closeNotification.on("click", () => {
-  banner.addClass("hidden");
+  banner.addClass("is-hidden");
 });
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  banner.addClass("hidden");
+  banner.addClass("is-hidden");
 
   const emailVal = email.val().trim();
   const passwordVal = password.val().trim();
@@ -45,7 +45,7 @@ const handleSubmit = async (e) => {
       return;
     }
 
-    banner.removeClass("hidden");
+    banner.removeClass("is-hidden");
   }
 };
 

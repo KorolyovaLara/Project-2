@@ -32,4 +32,8 @@ router.get("/games", (req, res) => {
   // return all the games in the system
 });
 
+router.get("/about-us", (req, res) => {
+  // returns an about us page with some information on there
+});
+
 module.exports = router;

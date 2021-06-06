@@ -9,13 +9,13 @@ const form = $("form");
 const closeNotification = $("#close_error_banner");
 const banner = $("#error_banner");
 closeNotification.on("click", () => {
-  banner.addClass("hidden");
+  banner.addClass("is-hidden");
 });
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  banner.addClass("hidden");
+  banner.addClass("is-hidden");
 
   const firstNameVal = firstName.val().trim();
   const lastNameVal = lastName.val().trim();
@@ -70,7 +70,7 @@ const handleSubmit = async (e) => {
     }
     const body = await res.json();
 
-    banner.removeClass("hidden");
+    banner.removeClass("is-hidden");
     $(".error-list").html(
       Array.isArray(body)
         ? body.map((err) => `<li>Invalid ${err}</li>`)
