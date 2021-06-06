@@ -44,16 +44,6 @@ Users.init(
         len: [8],
       },
     },
-    registeredAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    lastLogin: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     intro: {
       type: DataTypes.STRING,
       allowNull: true,

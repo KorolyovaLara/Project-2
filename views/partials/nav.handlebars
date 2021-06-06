@@ -25,22 +25,22 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
-          <a class="navbar-item">
+          <a class="navbar-item" href="/">
             Home
           </a>
 
-          <a class="navbar-item">
+          <a class="navbar-item" href="/games">
             Games
           </a>
-          {{#if loggedIn}}
-            <a class="navbar-item">
+          {{#unless loggedIn}}
+            <a class="navbar-item" href="/login">
               Login
             </a>
 
-            <a class="navbar-item">
+            <a class="navbar-item" href="/register">
               Register
             </a>
-          {{/if}}
+          {{/unless}}
         </div>
       </div>
     </nav>

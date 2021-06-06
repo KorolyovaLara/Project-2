@@ -20,7 +20,7 @@ router.get("/register", (req, res) => {
   if (req.user) {
     // render the dashboard
   } else {
-    // render the register page
+    res.render("register", {});
   }
 });
 

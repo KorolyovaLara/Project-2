@@ -1,5 +1,4 @@
 const Users = require("../../models/Users");
-const { Op } = require("sequelize");
 const { createToken } = require("../../utils/jwtToken");
 
 const router = require("express").Router();
@@ -63,6 +62,10 @@ router.post("/register", async (req, res) => {
       },
     });
   } catch (e) {
+    if (e?.errors) {
+      res.status(500).json(e.errors.map((err) => err.path));
+      return;
+    }
     res.status(500).json({ message: "Something went wrong" });
   }
 });
