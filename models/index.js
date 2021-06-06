@@ -20,7 +20,11 @@ GameCollections.hasMany(Games, {
 });
 
 Games.belongsToMany(GameCollections, {
-  foreignKey: "gameId",
+  through: {
+    model: "games",
+    key: "id",
+  },
+  as: "games_played",
 });
 
 Users.hasMany(Posts, {

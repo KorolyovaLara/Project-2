@@ -12,8 +12,6 @@ CREATE TABLE users (
 	registeredAt DATETIME DEFAULT NULL,
 	lastLogin DATETIME DEFAULT NULL,
 	intro TINYTEXT,
-	gameCollectionId INTEGER NOT NULL AUTO_INCREMENT,
-	UNIQUE (gameCollectionId)
 );
 
 CREATE TABLE games (
@@ -25,7 +23,7 @@ CREATE TABLE game_collections (
 	id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	gameId INTEGER NOT NULL,
 	userId INTEGER NOT NULL ,
-    FOREIGN KEY (userId) REFERENCES users(id),
+    CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES users(id),
     CONSTRAINT fk_game FOREIGN KEY (gameId) REFERENCES games(id)
 );
     
