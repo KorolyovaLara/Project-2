@@ -15,14 +15,6 @@ Tags.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    slug: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     postId: {
       type: DataTypes.STRING,
       allowNull: false,

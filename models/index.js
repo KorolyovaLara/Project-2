@@ -1,10 +1,10 @@
 // Model imports
 const Users = require("./Users");
 const Games = require("./Games");
-const GameCollection = require("./GameCollection");
-const Post = require("./Post");
-const Comment = require("./Comment");
-const Tag = require("./Tag");
+const GameCollections = require("./GameCollections");
+const Posts = require("./Posts");
+const Comments = require("./Comments");
+const Tags = require("./Tags");
 
 // Model association imports
 const GameCollectionToGames = require("./relationalModels/GameCollectionToGames");
@@ -13,35 +13,35 @@ const PostToComments = require("./relationalModels/PostToComments");
 const UserToPosts = require("./relationalModels/UserToPosts");
 
 // user to game collection
-Users.hasOne(GameCollection);
-GameCollection.hasOne(Users, {
+Users.hasOne(GameCollections);
+GameCollections.hasOne(Users, {
   foreignKey: "userId",
 });
 
 // game to game collection
-GameCollection.hasMany(Games, { through: GameCollectionToGames });
-Games.belongsToMany(GameCollection, {
+GameCollections.hasMany(Games, { through: GameCollectionToGames });
+Games.belongsToMany(GameCollections, {
   through: GameCollectionToGames,
 });
 
 // user to post
-Users.hasMany(Post, { through: UserToPosts });
-Post.belongsToMany(Users, {
+Users.hasMany(Posts, { through: UserToPosts });
+Posts.belongsToMany(Users, {
   through: UserToPosts,
 });
 
 // user to comment
-Users.hasMany(Comment);
-Comment.belongsTo(Users, {
+Users.hasMany(Comments);
+Comments.belongsTo(Users, {
   foreignKey: "authorId",
 });
 
 // post to comment
-Post.hasMany(Comment, { through: PostToComments });
-Comment.belongsTo(Post, {
+Post.hasMany(Comments, { through: PostToComments });
+Comments.belongsTo(Posts, {
   through: PostToComments,
 });
 
 // post to tag
-Post.hasMany(Tag, { through: PostToTags });
-Tag.belongsToMany(Post, { through: PostToTags });
+Posts.hasMany(Tags, { through: PostToTags });
+Tags.belongsToMany(Posts, { through: PostToTags });

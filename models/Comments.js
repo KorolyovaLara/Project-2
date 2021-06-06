@@ -26,15 +26,6 @@ Comments.init(
         key: "id",
       },
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     publishedAt: {
       type: DataTypes.DATE,
       allowNull: false,

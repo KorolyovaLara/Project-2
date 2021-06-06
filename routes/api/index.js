@@ -1,8 +1,10 @@
 const router = require("express").Router();
-const tagRoutes = require("./tagRoutes");
+
 const gameApi = require("./gameApi");
+const postApi = require("./postsApi");
+const tagApi = require("./tagApi");
 
-router.use("/tags", tagRoutes);
-router.use("/api/game", gameApi);
-
+router.use("/games", gameApi);
+router.use("/posts", postApi);
+router.use("/tags", tagApi);
 module.exports = router;

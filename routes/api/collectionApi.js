@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
-const Games = require("../../../models/Games");
-const Users = require("../../../models/Users");
-const GameCollections = require("../../../models/GameCollections");
-const withAuth = require("../../../utils/auth");
+const Games = require("../../models/Games");
+const Users = require("../../models/Users");
+const GameCollections = require("../../models/GameCollections");
+const withAuth = require("../../utils/auth");
 
 // find all collections
 router.get("/", withAuth, async (req, res) => {

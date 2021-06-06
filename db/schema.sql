@@ -31,33 +31,28 @@ CREATE TABLE posts (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	authorId INTEGER NOT NULL REFERENCES users(id),
 	title VARCHAR(75) NOT NULL,
-	slug VARCHAR(100) NOT NULL,
 	summary TINYTEXT,
-	createdAt DATETIME NOT NULL,
 	updatedAt DATETIME DEFAULT NULL,
 	publishedAt DATETIME DEFAULT NULL,
 	content TEXT  ,
 	PRIMARY KEY (id),
-	UNIQUE KEY uq_slug (slug),
 	CONSTRAINT fk_post_user FOREIGN KEY (authorId) REFERENCES users(id)
 ); 
 
 CREATE TABLE comments (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	postId INTEGER NOT NULL,
-	title VARCHAR(100) NOT NULL,
-	createdAt DATETIME NOT NULL,
+	userId INTEGER NOT NULL,
 	publishedAt DATETIME DEFAULT NULL,
 	content TEXT,
 	PRIMARY KEY (id),
-	CONSTRAINT fk_comment_post FOREIGN KEY (postId) REFERENCES posts(id)
+	CONSTRAINT fk_comment_post FOREIGN KEY (postId) REFERENCES posts(id),
+	CONSTRAINT fk_comment_user FOREIGN KEY (userId) REFERENCES users(id)
 ); 
 
 CREATE TABLE tags (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	title VARCHAR(75) NOT NULL,
-	slug VARCHAR(100) NOT NULL,
-	content TEXT,
 	PRIMARY KEY (id)
 );
 
