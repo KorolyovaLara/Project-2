@@ -23,6 +23,10 @@ Tags.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    postId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,

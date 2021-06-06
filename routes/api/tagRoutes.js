@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   });
 
   if (tagTitleValidate) {
-    res.status(404).json({ message: "A tag with this title already exists!" });
+    res.status(404).json({ message: `A tag with ${title} already exists!` });
     return;
   }
 

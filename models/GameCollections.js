@@ -13,17 +13,11 @@ GameCollections.init(
     },
     userId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "users",
-        key: "id",
-      },
+      allowNull: false,
     },
     gameId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "games",
-        key: "id",
-      },
+      allowNull: false,
     },
   },
   {

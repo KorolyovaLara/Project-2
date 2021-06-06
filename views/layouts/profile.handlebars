@@ -1,0 +1,27 @@
+{{#each users as |user| }}
+<div class="columns container">
+    <div class="column is-two-fifths">
+        <div class="content-container">
+            <h2 class="header title is-2">{{{get_avatar}}}<h2>
+        </div>
+        <div class="content-container">
+            <h2 class="header title is-2">{{users.username}}</h2>
+            <h2 class="header subtitle is-3">{{users.registered_at}}</h2>
+        </div>
+        <br/>
+        <div class="content-container">
+            <h3 class="header title is-3"></h3>
+            <h3 class="header title is-3"></h3>
+        </div>
+    </div>
+    <div class="column is-three-fifths">
+        <div class="container button">
+            <button class="button is-primary" id="collection-add">Add to your collection</button>
+        </div>
+        <br/>
+        <div class="collection-container columns" id="collection-cards">
+            <div class="column is-one-third box box-padding box-shadow"></div>
+        </div>
+    </div>
+</div>  
+{{/each}}
