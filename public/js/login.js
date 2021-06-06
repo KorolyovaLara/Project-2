@@ -1,29 +1,52 @@
-const email = document.querySelector("#email-login").value.trim();
-const password = document.querySelector("#password-login").value.trim();
+const email = $("#email");
+const password = $("#password");
+const form = $("form");
 
-const loginFormHandler = async (event) => {
-    event.preventDefault();
+const closeNotification = $("#close_error_banner");
+const banner = $("#error_banner");
+closeNotification.on("click", () => {
+  banner.addClass("hidden");
+});
 
-    if (email && password) {
-        const response = await fetch('/api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({email, password}),
-            headers: { 'Content-type': 'application/json'},
-        });
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-        if (response.ok) {
-            document.location.replace('/');
-        } else {
-            alert('Login attempt failed');
-        }
+  banner.addClass("hidden");
+
+  const emailVal = email.val().trim();
+  const passwordVal = password.val().trim();
+
+  const errors = {};
+  if (!emailVal) {
+    errors.email = "Invalid email";
+  }
+  if (!passwordVal) {
+    errors.password = "Invalid password";
+  }
+
+  if (errors.email || errors.password) {
+    alert(`${Object.keys(errors)
+      .map((key) => {
+        return `${errors[key]}\r`;
+      })
+      .join("")}
+      `);
+  } else {
+    const res = await fetch("/auth/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: emailVal, password: passwordVal }),
+    });
+    if (res.ok) {
+      window.location.href = "/";
+      return;
     }
-    else {
-        if(!email) {
-            email.add
-        }
-    }
+
+    banner.removeClass("hidden");
+  }
 };
 
-document
-    .querySelector(".login-form")
-    .addEventListener('submit', loginFormHandler);
+form.on("submit", handleSubmit);
