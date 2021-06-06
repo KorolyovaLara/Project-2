@@ -5,13 +5,9 @@ const router = require("express").Router();
 
 // create new tag
 router.post("/", async (req, res) => {
-  const { title,slug,content} = req.body;
+  const { title, slug, content } = req.body;
 
-  if (
-    ![title,slug,content].every(
-      (item) => item.trim() !== ""
-    )
-  ) {
+  if (![title, slug, content].every((item) => item.trim() !== "")) {
     res.status(404).send({ message: "Invalid parameters" });
     return;
   }
@@ -21,12 +17,14 @@ router.post("/", async (req, res) => {
   });
 
   if (tagTitleValidate) {
-    res.status(404).json({ message: "A tag with this title already exists!" });
+    res.status(404).json({ message: `A tag with ${title} already exists!` });
     return;
   }
 
   const newTag = await Tag.create({
-    title,slug,content
+    title,
+    slug,
+    content,
   });
 
   res.json({ status: "success", tag: newTag });

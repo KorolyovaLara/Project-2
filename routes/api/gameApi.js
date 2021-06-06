@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const Games = require("../../../models/Games");
-const withAuth = require("../../../utils/auth");
+const Games = require("../../models/Games");
+const { withAuth } = require("../../utils/auth");
 
 // find all games for the user
 router.get("/", withAuth, async (req, res) => {});
