@@ -11,15 +11,10 @@ Games.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    gameTitle: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    usersPlaying: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
     },
   },
   {

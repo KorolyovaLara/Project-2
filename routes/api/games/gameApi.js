@@ -10,12 +10,12 @@ router.post("/", withAuth, async (req, res) => {
   try {
     const user = req.user;
 
-    const { gameTitle } = req.body;
+    const { title } = req.body;
 
     try {
       const game = await Games.create({
         usersPlay: user.id,
-        gameTitle: gameTitle,
+        title,
       });
 
       res.json(game);
@@ -23,7 +23,7 @@ router.post("/", withAuth, async (req, res) => {
       console.log(e);
       return res
         .status(409)
-        .json({ message: `The title "${gameTitle}" already exists.` });
+        .json({ message: `The title "${title}" already exists.` });
     }
   } catch (e) {
     res.status(500).json({ message: "Something went wrong" });

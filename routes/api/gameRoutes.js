@@ -5,24 +5,26 @@ const router = require("express").Router();
 
 // create new game
 router.post("/", async (req, res) => {
-  const { gameTitle } = req.body;
+  const { title } = req.body;
 
-  if ( gameTitle.trim() === "" ) {
+  if (title.trim() === "") {
     res.status(404).send({ message: "Invalid parameters" });
     return;
   }
 
-  const gameTitleValidate = await Games.findOne({
-    where: { gameTitle },
+  const gameWithTitle = await Games.findOne({
+    where: { title },
   });
 
-  if (gameTitleValidate) {
-    res.status(404).json({ message: `A game with ${gameTitle} title already exists!`});
+  if (gameWithTitle) {
+    res
+      .status(404)
+      .json({ message: `A game with ${title} title already exists!` });
     return;
   }
 
   const newGame = await Games.create({
-    gameTitle
+    title,
   });
 
   res.json({ status: "success", game: newGame });
