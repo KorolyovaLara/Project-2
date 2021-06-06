@@ -37,7 +37,7 @@ Comments.belongsTo(Users, {
 });
 
 // post to comment
-Post.hasMany(Comments, { through: PostToComments });
+Posts.hasMany(Comments, { through: PostToComments });
 Comments.belongsTo(Posts, {
   through: PostToComments,
 });
