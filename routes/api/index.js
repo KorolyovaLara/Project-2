@@ -5,4 +5,7 @@ const gameApi = require("./gameApi");
 router.use("/tags", tagApi);
 router.use("/api/game", gameApi);
 
+router.use("/games", gameApi);
+
+router.use("/tags", tagApi);
 module.exports = router;

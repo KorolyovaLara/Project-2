@@ -1,4 +1,4 @@
-const Tag = require("../../models/Tag");
+const Tag = require("../../models/Tags");
 const { Op } = require("sequelize");
 
 const router = require("express").Router();
