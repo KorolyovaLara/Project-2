@@ -16,6 +16,15 @@ Games.init(
       allowNull: false,
       unique: true,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // youtube trailer
+    trailer: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,

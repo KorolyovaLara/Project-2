@@ -26,14 +26,19 @@ router.get("/register", (req, res) => {
 
 router.get("/user/:username", (req, res) => {
   // get the information for that user
+  res.render("user-info");
 });
 
 router.get("/games", (req, res) => {
-  // return all the games in the system
+  res.render("games", {});
 });
 
 router.get("/about-us", (req, res) => {
   // returns an about us page with some information on there
+});
+
+router.get("*", (req, res) => {
+  res.render("404");
 });
 
 module.exports = router;
