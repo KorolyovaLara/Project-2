@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const gameApi = require("./games");
+const tagRoutes = require("./tagRoutes");
+const gameApi = require("./gameApi");
 
-router.use("/api", gameApi);
+router.use("/tags", tagRoutes);
+router.use("/api/game", gameApi);
 
 module.exports = router;

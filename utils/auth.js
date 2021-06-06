@@ -1,4 +1,4 @@
-const { decodeToken } = require("../utils/jwtToken");
+const { decodeToken, createToken } = require("../utils/jwtToken");
 const Users = require("../models/Users");
 
 const withAuth = async (req, res, next) => {
@@ -26,4 +26,16 @@ const withAuth = async (req, res, next) => {
   next();
 };
 
-module.exports = withAuth;
+function setNewToken(req, res, next) {
+  if (!req.user) {
+    return next();
+  }
+
+  const token = createToken(req.user.id);
+  res.cookie("auth_token_gg", token, {
+    httpOnly: true,
+  });
+  return next();
+}
+
+module.exports = { withAuth, setNewToken };
