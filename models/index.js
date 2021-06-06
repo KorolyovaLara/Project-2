@@ -1,65 +1,47 @@
-const Users = require('./Users');
-const Games = require('./Games');
-const GameCollection = require('./GameCollection');
-const Post = require('./Post');
-const Comment = require('./Comment');
+// Model imports
+const Users = require("./Users");
+const Games = require("./Games");
+const GameCollection = require("./GameCollection");
+const Post = require("./Post");
+const Comment = require("./Comment");
+const Tag = require("./Tag");
 
-Users.belongsToMany(Games, {
-    // Define the third table needed to store the foreign keys
-    through: {
-      model: GameCollection,
-      unique: false
-    },
-    // Define an alias for when data is retrieved
-    as: 'user_games'
-  });
-  
-Games.belongsToMany(Users, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: GameCollection,
-    unique: false
-  },
-  // Define an alias for when data is retrieved
-  as: 'games_played_by_user'
-});
-  
-User.hasMany(Post, {
-  foreignKey: 'parentId',
-  onDelete: 'CASCADE',
+// Model association imports
+const GameCollectionToGames = require("./relationalModels/GameCollectionToGames");
+const PostToTags = require("./relationalModels/PostsToTags");
+const PostToComments = require("./relationalModels/PostToComments");
+const UserToPosts = require("./relationalModels/UserToPosts");
+
+// user to game collection
+Users.hasOne(GameCollection);
+GameCollection.hasOne(Users, {
+  foreignKey: "userId",
 });
 
-Post.belongsTo(User, {
-  foreignKey: 'parentId',
+// game to game collection
+GameCollection.hasMany(Games, { through: GameCollectionToGames });
+Games.belongsToMany(GameCollection, {
+  through: GameCollectionToGames,
 });
 
-Post.hasMany(Comment, {
-  foreignKey: 'postId',
-  onDelete: 'CASCADE',
+// user to post
+Users.hasMany(Post, { through: UserToPosts });
+Post.belongsToMany(Users, {
+  through: UserToPosts,
 });
 
+// user to comment
+Users.hasMany(Comment);
+Comment.belongsTo(Users, {
+  foreignKey: "authorId",
+});
+
+// post to comment
+Post.hasMany(Comment, { through: PostToComments });
 Comment.belongsTo(Post, {
-  foreignKey: 'postId',
+  through: PostToComments,
 });
 
-Post.belongsToMany(Tag, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: PostTag,
-    unique: false
-  },
-  // Define an alias for when data is retrieved
-  as: 'post_tag'
-});
-
-Tag.belongsToMany(Post, {
-// Define the third table needed to store the foreign keys
-through: {
-  model: PostTag,
-  unique: false
-},
-// Define an alias for when data is retrieved
-as: 'tag_of_post'
-});
-
-module.exports = { User, Games , GameCollection , Post };
+// post to tag
+Post.hasMany(Tag, { through: PostToTags });
+Tag.belongsToMany(Post, { through: PostToTags });
