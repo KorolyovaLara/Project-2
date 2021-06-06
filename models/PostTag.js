@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class PostTag extends Model {}
 
@@ -14,15 +14,15 @@ PostTag.init(
     postId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'post',
-        key: 'id',
+        model: "post",
+        key: "id",
       },
     },
     tagId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'tag',
-        key: 'id',
+        model: "tag",
+        key: "id",
       },
     },
   },
@@ -31,7 +31,7 @@ PostTag.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post_tag',
+    modelName: "post_tag",
   }
 );
 

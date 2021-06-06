@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
-const Post = require("../Post");
+const sequelize = require("../../config/connection");
+const Posts = require("../Posts");
 const Users = require("../Users");
 
 class UserToPosts extends Model {}
@@ -17,7 +17,7 @@ UserToPosts.init(
     postId: {
       type: DataTypes.INTEGER,
       references: {
-        model: Post,
+        model: Posts,
         key: "authorId",
       },
     },
