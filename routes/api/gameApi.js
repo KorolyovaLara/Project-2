@@ -2,6 +2,8 @@ const router = require("express").Router();
 
 const UserGame = require("../../models/UserGame");
 const Games = require("../../models/Games");
+const Users = require("../../models/Users");
+const GameCollection = require("../../models/GameCollection");
 const { withAuth } = require("../../utils/auth");
 const sequelize = require("../../config/connection");
 const Users = require("../../models/Users");
@@ -37,6 +39,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
+// create a new game
 router.post("/", withAuth, async (req, res) => {
   try {
     const user = req.user;
@@ -62,7 +65,7 @@ router.post("/", withAuth, async (req, res) => {
         .status(409)
         .json({ message: `The title "${title}" already exists.` });
     }
-  } catch (e) {
+  } catch (err) {
     res.status(500).json({ message: "Something went wrong" });
   }
 });
