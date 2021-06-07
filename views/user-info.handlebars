@@ -1,1 +1,10 @@
 {{> nav}}
+
+{{#if 404}} 
+{{> 404}}
+{{/if}}
+
+<h1>{{username}}</h1>
+{{#each games as |game|}}
+<p>{{game.title}}</p>
+{{/each}}
