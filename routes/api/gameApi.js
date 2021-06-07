@@ -3,6 +3,7 @@ const router = require("express").Router();
 const UserGame = require("../../models/UserGame");
 const Games = require("../../models/Games");
 const { withAuth } = require("../../utils/auth");
+const sequelize = require("../../config/connection");
 const Users = require("../../models/Users");
 
 // find all games for the user
@@ -11,17 +12,15 @@ const Users = require("../../models/Users");
  * select * from games inner join user_game on games.id = user_game.gameid where user_game.userid = ""
  */
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   console.log(req.user);
   try {
     const userId = req.user.id;
     try {
-      const games = await Users.findAll({
-        include: {
-          model: UserGame,
-          include: [Users, Games],
-        },
-      });
+      const games = await sequelize.query(
+        `select g.title, g.trailer, g.description from games as g inner join user_game as ug on ug.game_id = g.id where ug.user_id = ${userId}`,
+        { type: sequelize.QueryTypes.SELECT }
+      );
 
       if (!games) {
         res.status(404).json({ message: "No games found for this user!" });
@@ -42,15 +41,21 @@ router.post("/", withAuth, async (req, res) => {
   try {
     const user = req.user;
 
-    const { title } = req.body;
+    const { title, trailer, description } = req.body;
 
     try {
       const game = await Games.create({
-        usersPlay: user.id,
         title,
+        description,
+        trailer,
       });
 
-      res.json(game);
+      await UserGame.create({
+        user_id: user.id,
+        game_id: game.id,
+      });
+
+      res.json({ title, description, trailer });
     } catch (e) {
       console.log(e);
       return res

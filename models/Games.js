@@ -20,7 +20,6 @@ Games.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // youtube trailer
     trailer: {
       type: DataTypes.STRING,
       allowNull: false,
