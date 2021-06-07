@@ -24,6 +24,7 @@ function setNewToken(req, res, next) {
 
 // this function is here to get the user extracted if the cookie is there
 async function getUserIfCookieExists(req, res, next) {
+  console.log(req.cookies);
   if (!req.cookies.auth_token_gg) {
     return next();
   }
