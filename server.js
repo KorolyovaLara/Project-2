@@ -22,12 +22,11 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-// lanign page and others
+// landing page and others
 
 // 404 page
 app.use(function (req, res) {
-  res.status(400);
-  res.render("404", { title: "404: Page Not Found" });
+  res.render("404", { title: "Oops! Page not found." });
 });
 
 app.use(routes);
