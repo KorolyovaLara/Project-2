@@ -6,22 +6,7 @@ const GameCollection = require("../../models/GameCollection");
 const { withAuth } = require("../../utils/auth");
 
 // find all games for the user
-router.get("/id", withAuth, async (req, res) => {
-  try {
-    const userGames = await Games.findByPk(req.params.id, {
-      include: [{ model: Users, through: GameCollection, as: "user_games" }],
-    });
-
-    if (!userGames) {
-      res.status(404).json({ message: "No collection found for this user!" });
-      return;
-    }
-
-    res.status(200).json(userGames);
-  } catch (err) {
-    res.status(500).json({ message: "Something went wrong" });
-  }
-});
+router.get("/:id", withAuth, async (req, res) => {});
 
 // create a new game
 router.post("/", withAuth, async (req, res) => {
@@ -34,6 +19,8 @@ router.post("/", withAuth, async (req, res) => {
       const game = await Games.create({
         usersPlay: user.id,
         title,
+        description,
+        trailer,
       });
 
       res.json(game);

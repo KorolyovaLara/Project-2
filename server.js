@@ -23,9 +23,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// landing page and others
+
 app.use(routes);
 app.use(setNewToken);
-// landing page and others
+
 // 404 page
 app.use(function (req, res) {
   res.render("404", { title: "Oops! Page not found." });
