@@ -54,14 +54,16 @@ router.get("/user/:username", async (req, res) => {
 
 // get all games page
 router.get("/games", async (req, res) => {
-  const gamesData = await Games.findAll().catch((err) => {
-    res.json(err);
-  });
-  const games = gamesData.map((game) => ({
-    ...game.get({ plain: true }),
-    trailer: game.trailer.replace("watch?v=", "embed/"),
-  }));
-  res.render("games", { games });
+  try {
+    const gamesData = await Games.findAll();
+    const games = gamesData.map((game) => ({
+      ...game.get({ plain: true }),
+      trailer: game.trailer.replace("watch?v=", "embed/"),
+    }));
+    res.render("games", { games });
+  } catch (e) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
 });
 
 router.get("/about-us", (req, res) => {
