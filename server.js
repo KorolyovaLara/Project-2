@@ -9,7 +9,7 @@ const hbs = exphbs.create({ helpers });
 
 const sequelize = require("./config/connection");
 
-const { setNewToken } = require("./utils/auth");
+const { setNewToken, getUserIfCookieExists } = require("./utils/auth");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,8 +23,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(getUserIfCookieExists);
 app.use(routes);
 app.use(setNewToken);
+
+// 404 page
+app.use(function (req, res) {
+  res.render("404", { title: "Oops! Page not found." });
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
