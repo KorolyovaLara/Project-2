@@ -6,12 +6,12 @@
             <h1> All Games that our Users Play </h1>
         </div>
         {{#each games as |game|}}
-            <div class="hero-body level-item">
-                <p>
-                    {{game.title}}.
-                    {{game.description}}.
-                    {{game.trailer}}
-                </p>
+            <div class="hero-body">
+                <p>{{game.title}}.</p>
+                <p>{{game.description}}.</p>
+                <a>{{game.trailer}}</a>
+                <iframe width="100%" height="auto" src="{{{game.trailer}}}" allowfullscreen></iframe>
+
             </div>
         {{/each}}
     </div>
