@@ -1,4 +1,5 @@
 const Users = require("../../models/Users");
+const Games = require("../../models/Games");
 const sequelize = require("../../config/connection");
 
 const router = require("express").Router();
@@ -47,8 +48,13 @@ router.get("/user/:username", async (req, res) => {
   res.render("user-info", { games, 404: false, username });
 });
 
-router.get("/games", (req, res) => {
-  res.render("games", {});
+// get all games page
+router.get("/games", async (req, res) => {
+  const gamesData = await Games.findAll().catch((err) => {
+    res.json(err);
+  });
+  const games = gamesData.map((game) => game.get({ plain: true }));
+  res.render("games", { games });
 });
 
 router.get("/about-us", (req, res) => {

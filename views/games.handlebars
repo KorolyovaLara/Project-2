@@ -1,1 +1,18 @@
 {{> nav}}
+
+<div class="container">
+    <div class="hero level">
+        <div class="title level-item">
+            <h1> All Games that our Users Play </h1>
+        </div>
+        {{#each games as |game|}}
+            <div class="hero-body level-item">
+                <p>
+                    {{game.title}}.
+                    {{game.description}}.
+                    {{game.trailer}}
+                </p>
+            </div>
+        {{/each}}
+    </div>
+</div>

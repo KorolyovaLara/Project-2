@@ -37,5 +37,7 @@ app.use(function (req, res) {
 });
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
+  app.listen(PORT, () =>
+    console.log(`Now listening at port ${PORT}! <=== Running!`)
+  );
 });
