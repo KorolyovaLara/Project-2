@@ -29,11 +29,7 @@ app.use(setNewToken);
 
 // 404 page
 app.use(function (req, res) {
-  res.render("404", {
-    title: "Oops! Page not found.",
-    partials: "404",
-    error: { message },
-  });
+  res.render("404", { title: "Oops! Page not found." });
 });
 
 sequelize.sync({ force: false }).then(() => {

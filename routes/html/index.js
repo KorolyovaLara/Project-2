@@ -53,7 +53,10 @@ router.get("/games", async (req, res) => {
   const gamesData = await Games.findAll().catch((err) => {
     res.json(err);
   });
-  const games = gamesData.map((game) => game.get({ plain: true }));
+  const games = gamesData.map((game) => ({
+    ...game.get({ plain: true }),
+    trailer: game.trailer.replace("watch?v=", "embed/"),
+  }));
   res.render("games", { games });
 });
 

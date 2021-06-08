@@ -7,10 +7,12 @@
         </div>
         {{#each games as |game|}}
             <div class="hero-body">
-                <p>{{game.title}}.</p>
-                <p>{{game.description}}.</p>
-                <a>{{game.trailer}}</a>
-                <iframe width="100%" height="auto" src="{{{game.trailer}}}" allowfullscreen></iframe>
+                <p class="level-item">{{game.title}}.</p>
+                <p class="level-item">{{game.description}}.</p>
+
+                <figure class="image is-16by9">
+                    <iframe class="has-ratio" width="640" height="360" src="{{game.trailer}}" frameborder="0" allowfullscreen  alt="video for {{game.title}} game"></iframe>
+                  </figure>
 
             </div>
         {{/each}}
