@@ -3,10 +3,8 @@ const router = require("express").Router();
 const UserGame = require("../../models/UserGame");
 const Games = require("../../models/Games");
 const Users = require("../../models/Users");
-const GameCollection = require("../../models/GameCollection");
 const { withAuth } = require("../../utils/auth");
 const sequelize = require("../../config/connection");
-const Users = require("../../models/Users");
 
 // find all games for the user
 
