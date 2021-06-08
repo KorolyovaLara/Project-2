@@ -1,1 +1,10 @@
-<div>{{message}}</div>
+<div class="level-item">
+  <h2>
+    {{#if error}}
+      {{message}}
+    {{else}}
+      The page you were trying to reach doesn't exist.
+    {{/if}}
+  </h2>
+
+</div>
