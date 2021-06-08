@@ -3,14 +3,17 @@ const router = require("express").Router();
 router.get("/", (req, res) => {
   if (req.user) {
     // render the dashboard
+    res.render("dashboard");
   } else {
     // render the landing page
+    res.render("landingpage");
   }
 });
 
 router.get("/login", (req, res) => {
   if (req.user) {
     // render the dashboard
+    res.render("dashboard", {});
   } else {
     res.render("login", {});
   }
@@ -19,6 +22,7 @@ router.get("/login", (req, res) => {
 router.get("/register", (req, res) => {
   if (req.user) {
     // render the dashboard
+    res.render("dashboard", {});
   } else {
     res.render("register", {});
   }
