@@ -34,7 +34,7 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/user/:username", async (req, res) => {
-  const userLoggedIn = req.user;
+  const loggedIn = req.user;
   const { username } = req.params;
   const user = await Users.findOne({
     where: { username },
@@ -55,13 +55,10 @@ router.get("/user/:username", async (req, res) => {
   // userInfo contains info of user, whoose profile we want to display
   const userInfo = user.get({ plain: true });
 
-  //loggedIn contains info of user who is currently logged in
-  const loggedIn = userLoggedIn;
   res.render("user-info", {
     games,
     404: false,
     userInfo,
-    userLoggedIn,
     loggedIn,
   });
 });
