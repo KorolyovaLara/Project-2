@@ -6,11 +6,12 @@ const { withAuth } = require("../../utils/auth");
 const router = require("express").Router();
 
 router.get("/", withAuth, async (req, res) => {
+  const loggedIn = req.user;
   if (req.user) {
     // render the dashboard
     const fetchName = req.user.firstName;
     const fetchUsername = req.user.username;
-    res.render("dashboard", { fetchName, fetchUsername });
+    res.render("dashboard", { fetchName, fetchUsername, loggedIn });
   } else {
     // render the landing page
     res.render("landingpage");
@@ -86,7 +87,8 @@ router.get("/games", async (req, res) => {
 });
 
 router.get("/about-us", (req, res) => {
-  res.render("about-us");
+  const loggedIn = req.user;
+  res.render("about-us", { loggedIn });
 });
 
 router.get("*", (req, res) => {
