@@ -5,9 +5,10 @@ const sequelize = require("../../config/connection");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  if (req.user) {
+  const loggedIn = req.user;
+  if (loggedIn) {
     // render the dashboard
-    res.render("dashboard");
+    res.render("dashboard", { loggedIn });
   } else {
     // render the landing page
     res.render("landingpage");
@@ -50,8 +51,11 @@ router.get("/user/:username", async (req, res) => {
     `select g.title, g.trailer, g.description from games as g inner join user_game as ug on ug.game_id = g.id where ug.user_id = ${user.id}`,
     { type: sequelize.QueryTypes.SELECT }
   );
+
+  // userInfo contains info of user, whoose profile we want to display
   const userInfo = user.get({ plain: true });
-  // get the information for that user
+
+  //loggedIn contains info of user who is currently logged in
   const loggedIn = userLoggedIn;
   res.render("user-info", {
     games,
