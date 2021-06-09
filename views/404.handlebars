@@ -1,20 +1,30 @@
 {{> nav }}
 
 <div class="container">
-<div class="hero level">
-  <div class="hero-body level-item" >
-    <img src="https://i1.wp.com/www.ecommerce-nation.com/wp-content/uploads/2018/10/404-error.jpg?fit=800%2C600&ssl=1">
+  <div class="hero level">
+    <div class="hero-body level-item" >
+      <img src="https://i1.wp.com/www.ecommerce-nation.com/wp-content/uploads/2018/10/404-error.jpg?fit=800%2C600&ssl=1">
+    </div>
+
+    <div class="title level-item">
+      <h2>
+          {{ title }}
+      </h2>
+    </div>
+
+    {{> 404 }}
+    
+    <div class="level-item">
+      <p>Not to worry. Head back to our    
+        <a href="/"><span class="tag is-danger is-medium">HOME</span></a>
+        page!
+      </p>
+    </div>
+
   </div>
 
-  <div class="title level-item">
-    <h1>
-        {{ title }}
-    </h1>
-    <h2>
-        Not to worry. Head back to our <a href="/"><span class="tag is-danger is-large">HOME</span></a> page!      
-    </h2>
-  </div>
 </div>
 </div>
 
 {{> footer}}
+
