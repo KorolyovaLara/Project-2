@@ -1,4 +1,5 @@
 const Users = require("../../models/Users");
+const Games = require("../../models/Games");
 const sequelize = require("../../config/connection");
 
 const router = require("express").Router();
@@ -6,14 +7,17 @@ const router = require("express").Router();
 router.get("/", (req, res) => {
   if (req.user) {
     // render the dashboard
+    res.render("dashboard");
   } else {
     // render the landing page
+    res.render("landingpage");
   }
 });
 
 router.get("/login", (req, res) => {
   if (req.user) {
     // render the dashboard
+    res.render("dashboard", {});
   } else {
     res.render("login", {});
   }
@@ -22,6 +26,7 @@ router.get("/login", (req, res) => {
 router.get("/register", (req, res) => {
   if (req.user) {
     // render the dashboard
+    res.render("dashboard", {});
   } else {
     res.render("register", {});
   }
@@ -47,8 +52,18 @@ router.get("/user/:username", async (req, res) => {
   res.render("user-info", { games, 404: false, username });
 });
 
-router.get("/games", (req, res) => {
-  res.render("games", {});
+// get all games page
+router.get("/games", async (req, res) => {
+  try {
+    const gamesData = await Games.findAll();
+    const games = gamesData.map((game) => ({
+      ...game.get({ plain: true }),
+      trailer: game.trailer.replace("watch?v=", "embed/"),
+    }));
+    res.render("games", { games });
+  } catch (e) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
 });
 
 router.get("/about-us", (req, res) => {
