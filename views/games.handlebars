@@ -4,15 +4,15 @@
 <div class="container">
     <div class="hero level">
         <div class="hero-body level-item" >
-            <img src="/images/gamers_game.png">
+            <img src="/images/gamers_game.png" alt="banner with gaming consol controllers">
           </div>
 
-        <div class="title level-item">
-            <h1> All Games that our Users Play </h1>
+        <div class="level-item">
+            <h1 class="title"> All Games that our Users Play </h1>
         </div>
         {{#each games as |game|}}
             <div class="hero-body">
-                <p class="level-item">{{game.title}}.</p>
+                <h2 class="subtitle level-item">{{game.title}}.</h2>
                 <p class="level-item">{{game.description}}.</p>
 
                 <figure class="image is-16by9">
