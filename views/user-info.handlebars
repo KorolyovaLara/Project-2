@@ -6,20 +6,33 @@
  {{userInfo.intro}}
 </div>
 
-<div class="columns is-mobile">
+<div class="columns is-mobile is-mobile">
     <div class="column">
-<span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
-</div>
-<div class="column ">
-<div class="buttons level-right">
-  <button class="button is-primary" id = "modal-button" data-target = "#modal ">
-    <span class="icon">
-      <i class="fas fa-edit"></i>
-    </span>
-    <span>Add Game</span>
-  </button>
-</div>
-</div>
+        <span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
+    </div>
+    {{#if userLoggedIn}} 
+    <div class="column is-offset-5">
+        <div class="buttons ">
+          <button class="button is-primary" id = "modal-button" data-target = "#modal ">
+            <span class="icon">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span>Add Game to Collection</span>
+          </button>
+        </div>
+    </div>
+
+    <div class="column ">
+        <div class="buttons level-right">
+          <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal ">
+            <span class="icon">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span>Create New Game</span>
+          </button>
+        </div>
+    </div>
+    {{/if}}
 </div>
 
 <!-- Modal -->
@@ -32,30 +45,37 @@
     </header>
     <section class="modal-card-body">
       <!-- Content ... -->
-        <div class="field">
-          <label class="label">Game Title</label>
-          <div class="control">
-            <input class="input" type="text">
-          </div>
+       <div class="notification is-danger is-hidden" id="error_banner" >
+        <button class="delete" id="close_error_banner"></button>
+        <ul class="error-list"></ul>
         </div>
+        <form>
+            <div class="field">
+              <label class="label">Game Title</label>
+              <div class="control">
+                <input class="input" type="text" id="gameTitle">
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label">Description</label>
-          <div class="control">
-            <input class="input" type="text" >
-          </div>
-        </div>
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <input class="input" type="text" id="gameDescription">
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label">Trailer</label>
-          <div class="control">
-            <input class="input" type="email" placeholder="https://www.youtube.com/watch?v=m70xAqAkZq8">
-          </div>
-        </div>
+            <div class="field">
+              <label class="label">Trailer</label>
+              <div class="control">
+                <input class="input" type="text" id="gameTrailer" placeholder="https://www.youtube.com/watch?v=m70xAqAkZq8">
+              </div>
+            </div>
+
+            <div class="control">
+               <button class="button is-success mt-2">Save Game</button>
+            </div>  
+        </form>
     </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-    </footer>
   </div>
 </div>
 
