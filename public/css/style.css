@@ -1,5 +1,22 @@
+/* Google Fonts
+Normal text
+font-family: 'Source Sans Pro', sans-serif;
+Spceial text 
+font-family: 'Staatliches', cursive;
+*/
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Staatliches&display=swap");
+
 *::before,
 *::after,
 * {
   box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+h1 {
+  font-family: "Staatliches", cursive;
+}
+
+a {
+  font-family: "Staatliches", cursive;
 }
