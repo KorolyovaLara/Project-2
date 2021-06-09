@@ -16,18 +16,20 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  if (req.user) {
+  const loggedIn = req.user;
+  if (loggedIn) {
     // render the dashboard
-    res.render("dashboard", {});
+    res.render("dashboard", { loggedIn });
   } else {
     res.render("login", {});
   }
 });
 
 router.get("/register", (req, res) => {
-  if (req.user) {
+  const loggedIn = req.user;
+  if (loggedIn) {
     // render the dashboard
-    res.render("dashboard", {});
+    res.render("dashboard", { loggedIn });
   } else {
     res.render("register", {});
   }
@@ -83,7 +85,8 @@ router.get("/about-us", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  res.render("404");
+  const loggedIn = req.user;
+  res.render("404", { loggedIn });
 });
 
 module.exports = router;
