@@ -1,4 +1,26 @@
 {{> nav}}
 
+<div class="container">
+    <div class="hero ">
+        <div class="hero-body" >
+            <img src="/images/gamers_game.png" alt="banner with gaming consol controllers">
+        </div>
+    </div>
+    <div class="hero is-primary has-text-black is-medium">
+        <div class="hero-body has-text-centered">
+            <h1 class="title"> Hello {{fetchName}} !</h1>
+            <h2 > Long time no see... or was it just yesterday?!</h2>
+            <h2> We are playing so many games that we lost track of time here...oops.</h2>
+            <h2> But at least you are on track.</h2>
+            <h2> Check your profile and update your games.</h2>
+        </div>
+        <div class="button is-large is-danger">
+            <a href="/user/{{fetchUsername}}">
+            My Profile
+            </a>       
+        </div>
+
+    </div>       
+</div>
 
 {{> footer}}

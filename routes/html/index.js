@@ -1,17 +1,24 @@
 const Users = require("../../models/Users");
 const Games = require("../../models/Games");
 const sequelize = require("../../config/connection");
+const { withAuth } = require("../../utils/auth");
 
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   if (req.user) {
     // render the dashboard
-    res.render("dashboard");
+    const fetchName = req.user.firstName;
+    const fetchUsername = req.user.username;
+    res.render("dashboard", { fetchName, fetchUsername });
   } else {
     // render the landing page
     res.render("landingpage");
   }
+});
+
+router.get("/landing", (req, res) => {
+  res.render("landingpage");
 });
 
 router.get("/login", (req, res) => {
@@ -62,7 +69,6 @@ router.get("/user/:username", async (req, res) => {
   });
 });
 
-// get all games page
 router.get("/games", async (req, res) => {
   try {
     const gamesData = await Games.findAll();
@@ -77,7 +83,7 @@ router.get("/games", async (req, res) => {
 });
 
 router.get("/about-us", (req, res) => {
-  // returns an about us page with some information on there
+  res.render("about-us");
 });
 
 router.get("*", (req, res) => {

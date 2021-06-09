@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/dashboard">
+        <a class="navbar-item" href="/landing">
           <img src="/images/logo_gg.png" alt="small logo for GG site" />
         </a>
 
@@ -21,6 +21,7 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
+
           <a class="navbar-item" href="/">
             Home
           </a>
@@ -28,6 +29,7 @@
           <a class="navbar-item" href="/games">
             Games
           </a>
+
           {{#unless loggedIn}}
             <a class="navbar-item" href="/login">
               Login
@@ -37,6 +39,11 @@
               Register
             </a>
           {{/unless}}
+
+          <a class="navbar-item" href="/about-us">
+            About
+          </a>
+
         </div>
       </div>
     </nav>
