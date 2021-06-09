@@ -13,7 +13,6 @@ const sequelize = require("../../config/connection");
  */
 
 router.get("/", withAuth, async (req, res) => {
-  console.log(req.user);
   try {
     const userId = req.user.id;
     try {
@@ -29,11 +28,11 @@ router.get("/", withAuth, async (req, res) => {
       res.json(games);
     } catch (e) {
       console.log(e);
-      return res.status(409).json({ message: `The title already exists.` });
+      return res.status(409).json({ message: `Unexpected Error!` });
     }
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: "Unable to fetch User!" });
   }
 });
 
