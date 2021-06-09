@@ -33,9 +33,12 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/user/:username", async (req, res) => {
-  console.log("asdasdasd");
+  const userLoggedIn = req.user;
   const { username } = req.params;
-  const user = await Users.findOne({ where: { username } });
+  const user = await Users.findOne({
+    where: { username },
+    type: sequelize.QueryTypes.SELECT,
+  });
   if (!user) {
     res.render("user-info", {
       404: true,
@@ -47,9 +50,16 @@ router.get("/user/:username", async (req, res) => {
     `select g.title, g.trailer, g.description from games as g inner join user_game as ug on ug.game_id = g.id where ug.user_id = ${user.id}`,
     { type: sequelize.QueryTypes.SELECT }
   );
-  console.log(games);
+  const userInfo = user.get({ plain: true });
   // get the information for that user
-  res.render("user-info", { games, 404: false, username });
+  const loggedIn = userLoggedIn;
+  res.render("user-info", {
+    games,
+    404: false,
+    userInfo,
+    userLoggedIn,
+    loggedIn,
+  });
 });
 
 // get all games page
