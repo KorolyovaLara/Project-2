@@ -1,12 +1,120 @@
 {{> nav}}
 
-{{#if 404}} 
-{{> 404}}
+{{#if userInfo}} 
+<h2 class="title is-2 mt-4">Welcome {{userInfo.firstName}} {{userInfo.lastName}}!</h2>
+<div class="box">
+ {{userInfo.intro}}
+</div>
+
+<div class="columns is-mobile is-mobile">
+    <div class="column">
+        <span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
+    </div>
+    {{#if userLoggedIn}} 
+    <div class="column is-offset-5">
+        <div class="buttons ">
+          <button class="button is-primary" id = "modal-button" data-target = "#modal ">
+            <span class="icon">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span>Add Game to Collection</span>
+          </button>
+        </div>
+    </div>
+
+    <div class="column ">
+        <div class="buttons level-right">
+          <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal ">
+            <span class="icon">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span>Create New Game</span>
+          </button>
+        </div>
+    </div>
+    {{/if}}
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add New Game</p>
+      <button class="delete" id="modal-close" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+       <div class="notification is-danger is-hidden" id="error_banner" >
+        <button class="delete" id="close_error_banner"></button>
+        <ul class="error-list"></ul>
+        </div>
+        <form>
+            <div class="field">
+              <label class="label">Game Title</label>
+              <div class="control">
+                <input class="input" type="text" id="gameTitle">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <input class="input" type="text" id="gameDescription">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Trailer</label>
+              <div class="control">
+                <input class="input" type="text" id="gameTrailer" placeholder="https://www.youtube.com/watch?v=m70xAqAkZq8">
+              </div>
+            </div>
+
+            <div class="control">
+               <button class="button is-success mt-2">Save Game</button>
+            </div>  
+        </form>
+    </section>
+  </div>
+</div>
+
+
+<!-- display games -->
+{{#if games}} 
+<div class="columns is-mobile  is-multiline">
+    {{#each games as |game|}}
+        <div class="column is-3">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  {{game.title}}
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                    {{game.description}}
+                </div>
+              </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+{{else}}  
+<div class="box">
+ Sorry! The user havn't added any games!
+</div>
+{{/if}}
+{{else}}
+{{>404}}
 {{/if}}
 
-<h1>{{username}}</h1>
-{{#each games as |game|}}
-<p>{{game.title}}</p>
-{{/each}}
+<script
+    src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+    data-auto-replace-svg="nest"
+  ></script>
+
+<script src="/js/user-info.js"></script>
 
 {{> footer}}
+
