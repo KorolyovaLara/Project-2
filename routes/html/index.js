@@ -37,6 +37,10 @@ router.get("/register", (req, res) => {
 
 router.get("/user/:username", async (req, res) => {
   const loggedIn = req.user;
+  const gamesData = await Games.findAll({ attributes: ["title"] });
+  const allGames = gamesData.map((game) => ({
+    ...game.get({ plain: true }),
+  }));
   const { username } = req.params;
   const user = await Users.findOne({
     where: { username },
@@ -62,6 +66,7 @@ router.get("/user/:username", async (req, res) => {
     404: false,
     userInfo,
     loggedIn,
+    allGames,
   });
 });
 
