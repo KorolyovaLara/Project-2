@@ -11,9 +11,9 @@
         <span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
     </div>
     {{#if loggedIn}} 
-    <div class="column is-offset-5">
+    <div class="column is-offset-4">
         <div class="buttons ">
-          <button class="button is-primary" id = "modal-button" data-target = "#modal ">
+          <button class="button is-primary" id = "game-collection-button" data-target = "#modal-game-collection">
             <span class="icon">
               <i class="fas fa-edit"></i>
             </span>
@@ -24,7 +24,7 @@
 
     <div class="column ">
         <div class="buttons level-right">
-          <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal ">
+          <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal-new-game">
             <span class="icon">
               <i class="fas fa-edit"></i>
             </span>
@@ -35,8 +35,8 @@
     {{/if}}
 </div>
 
-<!-- Modal -->
-<div id="modal" class="modal">
+<!-- Modal to create new game-->
+<div id="modal-new-game" class="modal">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -49,7 +49,7 @@
         <button class="delete" id="close_error_banner"></button>
         <ul class="error-list"></ul>
         </div>
-        <form>
+        <form id="addGame">
             <div class="field">
               <label class="label">Game Title</label>
               <div class="control">
@@ -73,6 +73,42 @@
 
             <div class="control">
                <button class="button is-success mt-2">Save Game</button>
+            </div>  
+        </form>
+    </section>
+  </div>
+</div>
+
+<!-- Modal to add game to collection-->
+<div id="modal-game-collection" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add Game to your Collection</p>
+      <button class="delete" id="modal-close-user-collection" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+       <div class="notification is-danger is-hidden" id="error_banner" >
+        <button class="delete" id="close_error_banner"></button>
+        <ul class="error-list"></ul>
+        </div>
+        <form id="addToCollection">
+            <div class="field">
+              <label class="label">Select Game</label>
+              <div class="control">
+                <div class="select">
+                  <select id="gameTitleOption">
+                    {{#each allGames as |game|}}            
+                        <option>{{game.title}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="control">
+               <button class="button is-success mt-2">Add Game to Collection</button>
             </div>  
         </form>
     </section>
