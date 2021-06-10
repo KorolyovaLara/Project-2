@@ -1,38 +1,38 @@
 {{> nav}}
 
-{{#if userInfo}} 
-<h2 class="title is-2 mt-4">Welcome {{userInfo.firstName}} {{userInfo.lastName}}!</h2>
-<div class="box">
- {{userInfo.intro}}
-</div>
+<div class="container">
+  {{#if userInfo}} 
+  <h2 class="title is-2 mt-4" style="font-family: Staatliches, cursive" >Welcome to {{userInfo.username}}'s Profile Page!</h2>
+  
+  <div class="hero is-small is-warning">
+    <div class="hero-body ">
+    {{userInfo.intro}}
+    </div>
+  </div>
 
-<div class="columns is-mobile is-mobile">
-    <div class="column">
-        <span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
+    <div class="button is-danger level-item">
+        <span class="icon">{{userInfo.username}}'s Game Collection:</span>
     </div>
-    {{#if loggedIn}} 
-    <div class="column is-offset-4">
-        <div class="buttons ">
-          <button class="button is-primary" id = "game-collection-button" data-target = "#modal-game-collection">
-            <span class="icon">
-              <i class="fas fa-edit"></i>
-            </span>
-            <span>Add Game to Collection</span>
-          </button>
-        </div>
-    </div>
+  
+{{#if loggedIn}} 
 
-    <div class="column ">
-        <div class="buttons level-right">
-          <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal-new-game">
-            <span class="icon">
-              <i class="fas fa-edit"></i>
-            </span>
-            <span>Create New Game</span>
-          </button>
-        </div>
-    </div>
-    {{/if}}
+<div class="buttons"></div>
+    <button class="button is-primary " id = "game-collection-button" data-target = "#modal-game-collection">
+      <span class="icon">
+        <i class="fas fa-edit"></i>
+      </span>
+      <span>Add Game to Collection</span>
+    </button>
+
+    <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal-new-game">
+      <span class="icon">
+        <i class="fas fa-edit"></i>
+      </span>
+      <span>Create New Game</span>
+    </button>
+  </div>
+
+{{/if}}
 </div>
 
 <!-- Modal to create new game-->
@@ -118,6 +118,7 @@
 
 <!-- display games -->
 {{#if games}} 
+<div class="section">
 <div class="columns is-mobile  is-multiline">
     {{#each games as |game|}}
         <div class="column is-3">
@@ -136,6 +137,7 @@
         </div>
     {{/each}}
 </div>
+</div>
 {{else}}  
 <div class="box">
  Sorry! The user hasn't added any games!
@@ -145,10 +147,6 @@
 {{>404}}
 {{/if}}
 
-<script
-    src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
-    data-auto-replace-svg="nest"
-  ></script>
 
 <script src="/js/user-info.js"></script>
 

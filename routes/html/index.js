@@ -74,6 +74,7 @@ router.get("/user/:username", async (req, res) => {
     userInfo,
     loggedIn,
     allGames,
+    username,
   });
 });
 
