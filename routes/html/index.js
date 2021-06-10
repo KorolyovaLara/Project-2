@@ -7,7 +7,7 @@ const router = require("express").Router();
 
 router.get("/", withAuth, async (req, res) => {
   const loggedIn = req.user;
-  if (req.user) {
+  if (!!req.user) {
     // render the dashboard
     const fetchName = req.user.firstName;
     const fetchUsername = req.user.username;
@@ -89,6 +89,11 @@ router.get("/games", async (req, res) => {
 router.get("/about-us", (req, res) => {
   const loggedIn = req.user;
   res.render("about-us", { loggedIn });
+});
+
+router.get("/logout", (req, res) => {
+  const loggedIn = req.user;
+  res.render("logout", { loggedIn });
 });
 
 router.get("*", (req, res) => {

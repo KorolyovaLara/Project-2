@@ -14,7 +14,7 @@ const sequelize = require("../../config/connection");
 
 router.get("/", withAuth, async (req, res) => {
   try {
-    const userId = req.user.id;
+    const { userId } = req.user;
     try {
       const games = await sequelize.query(
         `select g.title, g.trailer, g.description from games as g inner join user_game as ug on ug.game_id = g.id where ug.user_id = ${userId}`,
@@ -28,7 +28,7 @@ router.get("/", withAuth, async (req, res) => {
       res.json(games);
     } catch (e) {
       console.log(e);
-      return res.status(409).json({ message: `Unexpected Error!` });
+      return res.status(500).json({ message: "Unexpected Error!" });
     }
   } catch (e) {
     console.log(e);
