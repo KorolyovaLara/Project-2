@@ -7,7 +7,7 @@ const router = require("express").Router();
 
 router.get("/", withAuth, async (req, res) => {
   const loggedIn = req.user;
-  if (!!req.user) {
+  if (!!loggedIn) {
     // render the dashboard
     const fetchName = req.user.firstName;
     const fetchUsername = req.user.username;

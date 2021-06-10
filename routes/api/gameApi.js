@@ -14,7 +14,7 @@ const sequelize = require("../../config/connection");
 
 router.get("/", withAuth, async (req, res) => {
   try {
-    const { userId } = req.user;
+    const userId = req.user.id;
     try {
       const games = await sequelize.query(
         `select g.title, g.trailer, g.description from games as g inner join user_game as ug on ug.game_id = g.id where ug.user_id = ${userId}`,
