@@ -8,7 +8,6 @@ const logout = async () => {
   });
   if (response.ok) {
     window.location.href = "/";
-    return;
   } else {
     alert("Failed to log out.");
   }
