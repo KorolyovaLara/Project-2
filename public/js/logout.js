@@ -6,7 +6,6 @@ const logout = async () => {
       "Content-Type": "application/json",
     },
   });
-  console.log(response);
   if (response.ok) {
     window.location.href = "/";
     return;
