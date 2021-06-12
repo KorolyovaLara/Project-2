@@ -9,9 +9,9 @@ router.get("/", (req, res) => {
   const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
-    const userDBname = req.user.firstName;
-    const userDBusername = req.user.username;
-    res.render("dashboard", { userDBname, userDBusername, loggedIn });
+    const name = req.user.firstName;
+    const username = req.user.username;
+    res.render("dashboard", { name, username, loggedIn });
   } else {
     // render the landing page
     res.render("landingpage");
