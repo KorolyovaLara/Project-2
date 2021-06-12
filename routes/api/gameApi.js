@@ -27,11 +27,9 @@ router.get("/", withAuth, async (req, res) => {
       }
       res.json(games);
     } catch (e) {
-      console.log(e);
       return res.status(500).json({ message: "Unexpected Error!" });
     }
   } catch (e) {
-    console.log(e);
     res.status(500).json({ message: "Unable to fetch User!" });
   }
 });
@@ -57,7 +55,6 @@ router.post("/", withAuth, async (req, res) => {
 
       res.json({ title, description, trailer });
     } catch (e) {
-      console.log(e);
       return res
         .status(409)
         .json({ message: `The title "${title}" already exists.` });
@@ -87,7 +84,6 @@ router.post("/gameCollection", withAuth, async (req, res) => {
 
       res.json({ title });
     } catch (e) {
-      console.log(e);
       return res.status(409).json({ message: `Something went wrong` });
     }
   } catch (err) {
