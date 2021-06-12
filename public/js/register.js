@@ -42,12 +42,15 @@ const handleSubmit = async (e) => {
   }
 
   if (Object.keys(errors).length > 0) {
-    alert(`${Object.keys(errors)
-      .map((key) => {
-        return `${errors[key]}\r`;
-      })
-      .join("")}
-      `);
+    banner.removeClass("is-hidden");
+    $(".error-list").html(
+      `${Object.keys(errors)
+        .map((key) => {
+          return `<li>${errors[key]}</li>`;
+        })
+        .join("")}
+        `
+    );
   } else {
     const res = await fetch("/auth/register", {
       method: "POST",
