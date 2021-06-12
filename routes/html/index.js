@@ -5,9 +5,9 @@ const { withAuth } = require("../../utils/auth");
 
 const router = require("express").Router();
 
-router.get("/", withAuth, async (req, res) => {
-  const loggedIn = req.user;
-  if (!!loggedIn) {
+router.get("/", (req, res) => {
+  const loggedIn = !!req.user;
+  if (loggedIn) {
     // render the dashboard
     const fetchName = req.user.firstName;
     const fetchUsername = req.user.username;
@@ -23,7 +23,7 @@ router.get("/landing", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
     res.render("dashboard", { loggedIn });
@@ -33,7 +33,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
     res.render("dashboard", { loggedIn });
@@ -43,7 +43,7 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/user/:username", async (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   const gamesData = await Games.findAll({ attributes: ["title"] });
   const allGames = gamesData.map((game) => ({
     ...game.get({ plain: true }),
@@ -80,7 +80,7 @@ router.get("/user/:username", async (req, res) => {
 
 router.get("/games", async (req, res) => {
   try {
-    const loggedIn = req.user;
+    const loggedIn = !!req.user;
     const gamesData = await Games.findAll();
     const games = gamesData.map((game) => ({
       ...game.get({ plain: true }),
@@ -103,7 +103,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   res.render("404", { loggedIn });
 });
 
