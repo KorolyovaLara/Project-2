@@ -5,7 +5,7 @@ const sequelize = require("../../config/connection");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
     res.render("dashboard", { loggedIn });
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
     res.render("dashboard", { loggedIn });
@@ -26,7 +26,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
     res.render("dashboard", { loggedIn });
@@ -36,7 +36,7 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/user/:username", async (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   const gamesData = await Games.findAll({ attributes: ["title"] });
   const allGames = gamesData.map((game) => ({
     ...game.get({ plain: true }),
@@ -73,7 +73,7 @@ router.get("/user/:username", async (req, res) => {
 // get all games page
 router.get("/games", async (req, res) => {
   try {
-    const loggedIn = req.user;
+    const loggedIn = !!req.user;
     const gamesData = await Games.findAll();
     const games = gamesData.map((game) => ({
       ...game.get({ plain: true }),
@@ -90,7 +90,7 @@ router.get("/about-us", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   res.render("404", { loggedIn });
 });
 
