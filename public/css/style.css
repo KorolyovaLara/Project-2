@@ -9,11 +9,16 @@ font-family: 'Staatliches', cursive;
 *::after,
 * {
   box-sizing: border-box;
-  font-family: "Source Sans Pro", sans-serif;
 }
 
 h1,
 h2,
 a {
   font-family: "Staatliches", cursive;
+}
+
+li,
+p,
+h3 {
+  font-family: "Source Sans Pro", sans-serif;
 }

@@ -3,7 +3,7 @@ const lastName = $("#lastName");
 const username = $("#username");
 const email = $("#email");
 const password = $("#password");
-const info = $("#info");
+const intro = $("#intro");
 const form = $("form");
 
 const closeNotification = $("#close_error_banner");
@@ -22,7 +22,7 @@ const handleSubmit = async (e) => {
   const usernameVal = username.val().trim();
   const emailVal = email.val().trim();
   const passwordVal = password.val().trim();
-  const infoVal = info.val().trim();
+  const introVal = intro.val().trim();
 
   const errors = {};
   if (!firstNameVal) {
@@ -61,7 +61,7 @@ const handleSubmit = async (e) => {
         username: usernameVal,
         email: emailVal,
         password: passwordVal,
-        info: infoVal,
+        intro: infoVal,
       }),
     });
     if (res.ok) {

@@ -1,14 +1,18 @@
 const logout = async () => {
   const response = await fetch("/auth/logout", {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
   });
-
+  console.log(response);
   if (response.ok) {
-    document.location.replace("/");
+    window.location.href = "/";
+    return;
   } else {
     alert("Failed to log out.");
   }
 };
 
-document.getElementById("#logout").addEventListener("click", logout);
+$("#logoutBtn").on("click", logout);

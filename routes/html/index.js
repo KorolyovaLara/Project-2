@@ -9,9 +9,9 @@ router.get("/", (req, res) => {
   const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
-    const fetchName = req.user.firstName;
-    const fetchUsername = req.user.username;
-    res.render("dashboard", { fetchName, fetchUsername, loggedIn });
+    const userDBname = req.user.firstName;
+    const userDBusername = req.user.username;
+    res.render("dashboard", { userDBname, userDBusername, loggedIn });
   } else {
     // render the landing page
     res.render("landingpage");
@@ -93,12 +93,12 @@ router.get("/games", async (req, res) => {
 });
 
 router.get("/about-us", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   res.render("about-us", { loggedIn });
 });
 
 router.get("/logout", (req, res) => {
-  const loggedIn = req.user;
+  const loggedIn = !!req.user;
   res.render("logout", { loggedIn });
 });
 
