@@ -14,9 +14,9 @@ $("#new-game-modal-button").click(function () {
 });
 
 $("#modal-close").click(function () {
-  document.getElementById("gameTitle").value = "";
-  document.getElementById("gameDescription").value = "";
-  document.getElementById("gameTrailer").value = "";
+  gameTitle.val("");
+  gameDescription.val("");
+  gameTrailer.val("");
   $("html").removeClass("is-clipped");
   modalNewGame[0].classList.remove("is-active");
 });
