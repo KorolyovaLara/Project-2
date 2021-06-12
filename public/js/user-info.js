@@ -14,6 +14,9 @@ $("#new-game-modal-button").click(function () {
 });
 
 $("#modal-close").click(function () {
+  document.getElementById("gameTitle").value = "";
+  document.getElementById("gameDescription").value = "";
+  document.getElementById("gameTrailer").value = "";
   $("html").removeClass("is-clipped");
   modalNewGame[0].classList.remove("is-active");
 });
@@ -55,13 +58,15 @@ const handleSubmit = async (e) => {
   }
 
   if (Object.keys(errors).length > 0) {
-    console.log(errors);
-    `${Object.keys(errors)
-      .map((key) => {
-        return `${errors[key]}\r`;
-      })
-      .join("")}
-      `;
+    banner.removeClass("is-hidden");
+    $(".error-list").html(
+      `${Object.keys(errors)
+        .map((key) => {
+          return `${errors[key]}\r`;
+        })
+        .join("")}
+        `
+    );
   } else {
     const res = await fetch("/api/game", {
       method: "POST",
