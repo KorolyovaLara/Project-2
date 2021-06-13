@@ -4,7 +4,7 @@
 
     Coding Bootcamp - Project - 2
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://git.heroku.com/gg-good-gaming.git)
 
 [![Github license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/KorolyovaLara/TeamProject-2/blob/main/LICENSE)
 
@@ -37,7 +37,9 @@
 
 ## About The Project
 
-Project WireFrame - our starting point
+Good Gaming is all about finding your gaming buddy online. User can have a profile and can add games to their collection. Same game can be added into other user’s collection as well. Hence, they can find their Gaming Buddies. A game includes a title, description and a trailer. When games page is rendered, user is able to view all the games, their description and is able to play trailer as well. User is bale to register and login. User is able to view other people’s profile as well. Profile page of user includes User info, description of the user and games collection of the user.
+
+#### **_Project WireFrame - our starting point_**
 
 ![WireFrame](./public/images/project_wireframe.png)
 
