@@ -4,7 +4,7 @@
 
     Coding Bootcamp - Project - 2
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](http://goodgaming.herokuapp.com/)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://goodgaming.herokuapp.com)
 
 [![Github license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/KorolyovaLara/TeamProject-2/blob/main/LICENSE)
 
@@ -41,7 +41,7 @@ Good Gaming is all about finding your gaming buddy online. User can have a profi
 
 ### Live URL
 
-http://goodgaming.herokuapp.com
+https://goodgaming.herokuapp.com
 
 ### Team
 
