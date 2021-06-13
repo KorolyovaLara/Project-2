@@ -1,140 +1,139 @@
 {{> nav}}
 
+<div class="container" style="font-family: 'Source Sans Pro', sans-serif;">
 {{#if userInfo}} 
-    <h2 class="title is-2 mt-4">Welcome {{userInfo.firstName}} {{userInfo.lastName}}!</h2>
+    <h2 class="title is-2 mt-4" style="font-family: 'Staatliches', cursive;">Welcome to {{userInfo.username}}'s Profile!</h2>
     <div class="box">
        {{userInfo.intro}}
     </div>
 
-{{#if loggedIn}} 
-<div class="columns is-desktop">
-   <div class="column is-one-quarter">
-      <div class="buttons ">
-          <button class="button is-primary" id = "game-collection-button" data-target = "#modal-game-collection">
+   {{#if loggedIn}} 
+   <div class="columns is-desktop">
+      <div class="column is-one-quarter">
+         <div class="buttons ">
+             <button class="button is-primary" id = "game-collection-button" data-target = "#modal-game-collection">
+               <span class="icon">
+                 <i class="fas fa-edit"></i>
+               </span>
+               <span>Add Game to Collection</span>
+             </button>
+           </div>
+      </div>
+      <div class="column ">
+         <div class="buttons">
+            <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal-new-game">
             <span class="icon">
-              <i class="fas fa-edit"></i>
+            <i class="fas fa-edit"></i>
             </span>
-            <span>Add Game to Collection</span>
-          </button>
-        </div>
-   </div>
-   <div class="column ">
-      <div class="buttons">
-         <button class="button is-primary" id = "new-game-modal-button" data-target = "#modal-new-game">
-         <span class="icon">
-         <i class="fas fa-edit"></i>
-         </span>
-         <span>Create New Game</span>
-         </button>
+            <span>Create New Game</span>
+            </button>
+         </div>
       </div>
    </div>
-</div>
-{{/if}}
-<!-- Modal to create new game-->
-<div id="modal-new-game" class="modal">
-   <div class="modal-background"></div>
-   <div class="modal-card">
-      <header class="modal-card-head">
-         <p class="modal-card-title">Add New Game</p>
-         <button class="delete" id="modal-close" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-         <!-- Content ... -->
-         <div class="notification is-danger is-hidden" id="error_banner" >
-            <button class="delete" id="close_error_banner"></button>
-            <ul class="error-list"></ul>
-         </div>
-         <form id="addGame">
-            <div class="field">
-               <label class="label">Game Title</label>
-               <div class="control">
-                  <input class="input" type="text" id="gameTitle">
-               </div>
+   {{/if}}
+   <!-- Modal to create new game-->
+   <div id="modal-new-game" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+         <header class="modal-card-head">
+            <p class="modal-card-title">Add New Game</p>
+            <button class="delete" id="modal-close" aria-label="close"></button>
+         </header>
+         <section class="modal-card-body">
+            <!-- Content ... -->
+            <div class="notification is-danger is-hidden" id="error_banner" >
+               <button class="delete" id="close_error_banner"></button>
+               <ul class="error-list"></ul>
             </div>
-            <div class="field">
-               <label class="label">Description</label>
-               <div class="control">
-                  <input class="input" type="text" id="gameDescription">
-               </div>
-            </div>
-            <div class="field">
-               <label class="label">Trailer</label>
-               <div class="control">
-                  <input class="input" type="text" id="gameTrailer" placeholder="https://www.youtube.com/watch?v=m70xAqAkZq8">
-               </div>
-            </div>
-            <div class="control">
-               <button class="button is-success mt-2">Save Game</button>
-            </div>
-         </form>
-      </section>
-   </div>
-</div>
-<!-- Modal to add game to collection-->
-<div id="modal-game-collection" class="modal">
-   <div class="modal-background"></div>
-   <div class="modal-card">
-      <header class="modal-card-head">
-         <p class="modal-card-title">Add Game to your Collection</p>
-         <button class="delete" id="modal-close-user-collection" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-         <!-- Content ... -->
-         <div class="notification is-danger is-hidden" id="error_banner" >
-            <button class="delete" id="close_error_banner"></button>
-            <ul class="error-list"></ul>
-         </div>
-         <form id="addToCollection">
-            <div class="field">
-               <label class="label">Select Game</label>
-               <div class="control">
-                  <div class="select">
-                     <select id="gameTitleOption">
-                        {{#each allGames as |game|}}            
-                        <option>{{game.title}}</option>
-                        {{/each}}
-                     </select>
+            <form id="addGame">
+               <div class="field">
+                  <label class="label">Game Title</label>
+                  <div class="control">
+                     <input class="input" type="text" id="gameTitle">
                   </div>
                </div>
-            </div>
-            <div class="control">
-               <button class="button is-success mt-2">Add Game to Collection</button>
-            </div>
-         </form>
-      </section>
-   </div>
-</div>
-
-<span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
-<!-- display games -->
-{{#if games}} 
-<div class="section">
-<div class="columns is-mobile  is-multiline">
-   {{#each games as |game|}}
-   <div class="column is-3">
-      <div class="card">
-         <header class="card-header">
-            <p class="card-header-title">
-               {{game.title}}
-            </p>
-         </header>
-         <div class="card-content">
-            <div class="content">
-               {{game.description}}
-            </div>
-         </div>
+               <div class="field">
+                  <label class="label">Description</label>
+                  <div class="control">
+                     <input class="input" type="text" id="gameDescription">
+                  </div>
+               </div>
+               <div class="field">
+                  <label class="label">Trailer</label>
+                  <div class="control">
+                     <input class="input" type="text" id="gameTrailer" placeholder="https://www.youtube.com/watch?v=m70xAqAkZq8">
+                  </div>
+               </div>
+               <div class="control">
+                  <button class="button is-success mt-2">Save Game</button>
+               </div>
+            </form>
+         </section>
       </div>
    </div>
-   {{/each}}
-</div>
-</div>
-{{else}}  
-<div class="box">
-   Sorry! The user hasn't added any games!
-</div>
+   <!-- Modal to add game to collection-->
+   <div id="modal-game-collection" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+         <header class="modal-card-head">
+            <p class="modal-card-title">Add Game to your Collection</p>
+            <button class="delete" id="modal-close-user-collection" aria-label="close"></button>
+         </header>
+         <section class="modal-card-body">
+            <!-- Content ... -->
+            <div class="notification is-danger is-hidden" id="error_banner" >
+               <button class="delete" id="close_error_banner"></button>
+               <ul class="error-list"></ul>
+            </div>
+            <form id="addToCollection">
+               <div class="field">
+                  <label class="label">Select Game</label>
+                  <div class="control">
+                     <div class="select">
+                        <select id="gameTitleOption">
+                           {{#each allGames as |game|}}            
+                           <option>{{game.title}}</option>
+                           {{/each}}
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <div class="control">
+                  <button class="button is-success mt-2">Add Game to Collection</button>
+               </div>
+            </form>
+         </section>
+      </div>
+   </div>
+   
+   <span class="tag is-danger is-large has-background-danger-dark mb-4" style="font-family: 'Staatliches', cursive;">{{userInfo.username}}'s Game Collection:</span>
+   <!-- display games -->
+   {{#if games}} 
+   <div class="section">
+      <div class="columns is-mobile  is-multiline is-centered">
+         {{#each games as |game|}}
+         <div class="column is-3">
+            <div class="card">
+               <header class="card-header">
+                  <p class="card-header-title">
+                     {{game.title}}
+                  </p>
+               </header>
+            </div>
+         </div>
+         {{/each}}
+      </div>
+   </div>
+   {{else}}  
+   <div class="box">
+      Sorry! The user hasn't added any games!
+   </div>
+   {{/if}}
+
+   {{else}}
+   {{>404}}
+   
 {{/if}}
-{{else}}
-{{>404}}
-{{/if}}
+</div>
+
 <script src="/js/user-info.js"></script>
-{{> footer}}
