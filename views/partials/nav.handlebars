@@ -1,8 +1,11 @@
 <header>
   <div class="container">
+
     <nav class="navbar" role="navigation" aria-label="main navigation">
+
       <div class="navbar-brand">
-        <a class="navbar-item" href="/dashboard">
+
+        <a class="navbar-item" href="/landing">
           <img src="/images/logo_gg.png" alt="small logo for GG site" />
         </a>
 
@@ -17,10 +20,12 @@
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
+
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
+
           <a class="navbar-item" href="/">
             Home
           </a>
@@ -28,7 +33,12 @@
           <a class="navbar-item" href="/games">
             Games
           </a>
-          {{#unless loggedIn}}
+
+          {{#if loggedIn}}
+            <a class="navbar-item" href="/logout">
+              Logout
+            </a>
+          {{else}}
             <a class="navbar-item" href="/login">
               Login
             </a>
@@ -36,9 +46,18 @@
             <a class="navbar-item" href="/register">
               Register
             </a>
-          {{/unless}}
+          {{/if}}
+
+          <a class="navbar-item" href="/about-us">
+            About
+          </a>
+
         </div>
       </div>
     </nav>
+
   </div>
+
 </header>
+
+<script src="./js/navbar.js"></script>
