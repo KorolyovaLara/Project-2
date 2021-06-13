@@ -6,8 +6,14 @@ class UserGame extends Model {}
 
 UserGame.init(
   {
-    user_id: DataTypes.INTEGER,
-    game_id: DataTypes.INTEGER,
+    user_id: {
+      type: DataTypes.INTEGER,
+    },
+
+    game_id: {
+      type: DataTypes.INTEGER,
+      unique: true,
+    },
   },
   {
     sequelize,
