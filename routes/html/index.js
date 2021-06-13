@@ -1,6 +1,7 @@
 const Users = require("../../models/Users");
 const Games = require("../../models/Games");
 const sequelize = require("../../config/connection");
+const { withAuth } = require("../../utils/auth");
 
 const router = require("express").Router();
 
@@ -8,11 +9,17 @@ router.get("/", (req, res) => {
   const loggedIn = !!req.user;
   if (loggedIn) {
     // render the dashboard
-    res.render("dashboard", { loggedIn });
+    const name = req.user.firstName;
+    const username = req.user.username;
+    res.render("dashboard", { name, username, loggedIn });
   } else {
     // render the landing page
     res.render("landingpage");
   }
+});
+
+router.get("/landing", (req, res) => {
+  res.render("landingpage");
 });
 
 router.get("/login", (req, res) => {
@@ -67,10 +74,10 @@ router.get("/user/:username", async (req, res) => {
     userInfo,
     loggedIn,
     allGames,
+    username,
   });
 });
 
-// get all games page
 router.get("/games", async (req, res) => {
   try {
     const loggedIn = !!req.user;
@@ -86,7 +93,13 @@ router.get("/games", async (req, res) => {
 });
 
 router.get("/about-us", (req, res) => {
-  // returns an about us page with some information on there
+  const loggedIn = !!req.user;
+  res.render("about-us", { loggedIn });
+});
+
+router.get("/logout", (req, res) => {
+  const loggedIn = !!req.user;
+  res.render("logout", { loggedIn });
 });
 
 router.get("*", (req, res) => {

@@ -118,4 +118,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.delete("/logout", (req, res) => {
+  res.clearCookie("auth_token_gg");
+  res.end();
+});
+
 module.exports = router;

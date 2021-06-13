@@ -108,6 +108,7 @@
 <span class="tag is-danger is-large has-background-danger-dark mb-4">Your Game Collection:</span>
 <!-- display games -->
 {{#if games}} 
+<div class="section">
 <div class="columns is-mobile  is-multiline">
    {{#each games as |game|}}
    <div class="column is-3">
@@ -125,6 +126,7 @@
       </div>
    </div>
    {{/each}}
+</div>
 </div>
 {{else}}  
 <div class="box">
