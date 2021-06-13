@@ -12,7 +12,6 @@ UserGame.init(
 
     game_id: {
       type: DataTypes.INTEGER,
-      unique: true,
     },
   },
   {
