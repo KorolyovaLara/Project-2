@@ -64,7 +64,7 @@ const handleSubmit = async (e) => {
         username: usernameVal,
         email: emailVal,
         password: passwordVal,
-        intro: introVal,
+        intro: infoVal,
       }),
     });
     if (res.ok) {
